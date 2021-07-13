@@ -3,6 +3,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import useAnimatedNavToggler from '../../utils/useAnimatedNavToggler';
 import MenuIcon from '../../public/menu-icon.svg';
+import CloseIcon from '../../public/close-icon.svg';
 import Cart from './Cart';
 import { motion } from 'framer-motion';
 
@@ -52,6 +53,11 @@ const NavItemContainer = styled.div`
     color: var(--accent);
     text-decoration: none;
   }
+
+  @media only screen and (max-width: 768px) {
+    padding: 7px;
+    justify-content: center;
+  }
 `;
 
 const NavToggler = styled.button`
@@ -72,15 +78,25 @@ const NavToggler = styled.button`
   }
 `;
 
+const NavCloseContainer = styled.div`
+  position: relative;
+
+  button {
+    position: absolute;
+    right: 0;
+  }
+`;
+
 const MobileNavLinks = motion(styled.div`
   z-index: 10;
   position: fixed;
   top: 0;
-  inset: 0;
-  margin: 4px 6px;
-  padding: 10px;
-  border: 1px solid var(--black);
-  border-radius: 10%;
+  left: 0;
+  right: 0;
+  margin: 20px 10px 20px 50px;
+  padding: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 13px;
   background: white;
 
   @media only screen and (min-width: 768px) {
@@ -123,7 +139,18 @@ const Nav = () => {
         initial={{ x: '150%', display: 'none' }}
         animate={animation}
       >
-        Nav links and close box
+        <NavCloseContainer>
+          <NavToggler
+            onClick={toggleNavbar}
+            className={showNavLinks ? 'open' : 'closed'}
+          >
+            <CloseIcon style={{ width: '20px', height: '20px' }} />
+          </NavToggler>
+        </NavCloseContainer>
+
+        {navItems.map((navItem) => (
+          <NavItem key={navItem.id} navItem={navItem} />
+        ))}
       </MobileNavLinks>
     </>
   );
