@@ -6,6 +6,7 @@ import MenuIcon from '../../public/menu-icon.svg';
 import CloseIcon from '../../public/close-icon.svg';
 import Cart from './Cart';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 
 const navItems = [
   {
@@ -99,6 +100,10 @@ const MobileNavLinks = motion(styled.div`
   border-radius: 13px;
   background: white;
 
+  a {
+    cursor: pointer;
+  }
+
   @media only screen and (min-width: 768px) {
     display: none;
   }
@@ -111,6 +116,33 @@ const NavItem = ({ navItem }) => (
     </Link>
   </NavItemContainer>
 );
+
+const NavItemsMobile = ({ navItems, closeNavbar }) => {
+  const router = useRouter();
+
+  const handleClick = (path) => {
+    closeNavbar();
+    router.push(path).catch((e) => {
+      console.log(e);
+    });
+  };
+
+  return (
+    <>
+      {navItems.map((navItem) => (
+        <NavItemContainer key={navItem.id}>
+          <a
+            onClick={() => {
+              handleClick(navItem.route);
+            }}
+          >
+            {navItem.name}
+          </a>
+        </NavItemContainer>
+      ))}
+    </>
+  );
+};
 
 const Nav = () => {
   const { showNavLinks, animation, toggleNavbar } = useAnimatedNavToggler();
@@ -148,9 +180,7 @@ const Nav = () => {
           </NavToggler>
         </NavCloseContainer>
 
-        {navItems.map((navItem) => (
-          <NavItem key={navItem.id} navItem={navItem} />
-        ))}
+        <NavItemsMobile navItems={navItems} closeNavbar={toggleNavbar} />
       </MobileNavLinks>
     </>
   );
