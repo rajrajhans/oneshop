@@ -87,3 +87,4 @@ modules.xml
 .idea/sonarlint
 
 node_modules/
+*/node_modules/
