@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import { config, createSchema } from '@keystone-next/keystone/schema';
+import { User } from './schamas/User';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-oneshop';
@@ -23,6 +24,7 @@ export default config({
   },
   lists: createSchema({
     // schema items
+    User,
   }),
   ui: {
     // TODO: add roles
