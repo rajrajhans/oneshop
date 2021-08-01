@@ -5,6 +5,12 @@ import styled, { createGlobalStyle } from 'styled-components';
 const GlobalStyles = createGlobalStyle`
   html {
     box-sizing: border-box;
+    
+    --light: #ffeabe;
+    --black: #393939;
+    --secondary: #fdc30e;
+    --accent: #ff8028;
+    --dark: #d64208;
   }
 
   *, *:before, *:after {
@@ -15,7 +21,8 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Mulish', --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding: 0;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.3  rem;
+    background: var(--light);
   }
 
   a {
