@@ -21,7 +21,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Mulish', --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding: 0;
     margin: 0;
-    font-size: 1.3  rem;
+    font-size: 1.2rem;
     background: var(--light);
   }
 
