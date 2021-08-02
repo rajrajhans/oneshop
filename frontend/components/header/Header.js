@@ -3,6 +3,7 @@ import Logo from './Logo';
 import Nav from './Nav';
 import Cart from './Cart';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <Logo />
+
       <Nav />
       <Cart />
     </HeaderContainer>
