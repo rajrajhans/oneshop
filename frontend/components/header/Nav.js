@@ -25,21 +25,43 @@ const navItems = [
   },
 ];
 
-const NavItem = styled(Link)`
-  color: red;
-  display: none !important;
-  padding: 100px;
+const NavContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
+
+const NavItemContainer = styled.div`
+  padding: 0 10px;
+  display: flex;
+  margin: auto;
+
+  a {
+    font-weight: 600;
+    color: var(--black);
+    transition: color 0.2s;
+  }
+
+  a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+`;
+
+const NavItem = ({ navItem }) => (
+  <NavItemContainer>
+    <Link href={navItem.route}>
+      <a>{navItem.name}</a>
+    </Link>
+  </NavItemContainer>
+);
 
 const Nav = () => {
   return (
-    <div>
+    <NavContainer>
       {navItems.map((navItem) => (
-        <NavItem key={navItem.id} href={navItem.route}>
-          {navItem.name}
-        </NavItem>
+        <NavItem key={navItem.id} navItem={navItem} />
       ))}
-    </div>
+    </NavContainer>
   );
 };
 
