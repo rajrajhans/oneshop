@@ -1,7 +1,12 @@
 import React from 'react';
 
-const PageLayout = () => {
-  return <div>Test</div>;
+const PageLayout = ({ children }) => {
+  return (
+    <>
+      <div>Hello from Page Layout</div>
+      {children}
+    </>
+  );
 };
 
 export default PageLayout;
