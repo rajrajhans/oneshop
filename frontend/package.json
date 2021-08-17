@@ -1,5 +1,5 @@
 {
-  "name": "@rajrajhans/ecommerce-starter",
+  "name": "@rajrajhans/oneshop",
   "version": "2.0.0",
   "description": "A simple ecommerce website built using NextJS, Apollo and GraphQL.",
   "main": "index.js",
