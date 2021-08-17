@@ -1,9 +1,10 @@
 import React from 'react';
+import Header from './header/Header';
 
 const PageLayout = ({ children }) => {
   return (
     <>
-      <div>Hello from Page Layout</div>
+      <Header />
       {children}
     </>
   );
