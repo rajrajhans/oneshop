@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "keystone-next",
-    "seed-data": "keystone-next --seed-data"
+    "demo-data": "keystone-next --demo-data"
   },
   "babel": {
     "presets": [
