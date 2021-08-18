@@ -3,18 +3,30 @@ import NProgress from 'nprogress';
 import '../styles/nprogress.css';
 import Router from 'next/router';
 import PageLayout from '../components/PageLayout';
+import { ApolloProvider } from '@apollo/client';
+import withApolloClientConfig from '../utils/withApolloClientConfig';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps, apollo }) => {
   return (
-    <PageLayout>
-      <div>Hello from App112</div>
-      <Component {...pageProps} />
-    </PageLayout>
+    <ApolloProvider client={apollo}>
+      <PageLayout>
+        <div>Hello from App112</div>
+        <Component {...pageProps} />
+      </PageLayout>
+    </ApolloProvider>
   );
 };
 
-export default App;
+App.getInitialProps = async ({ Component, ctx }) => {
+  let pageProps = {};
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
+  pageProps.query = ctx.query;
+};
+
+export default withApolloClientConfig(App);
