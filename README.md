@@ -1,10 +1,10 @@
 <p align="center">
   <a href="https://examsecure.rajrajhans.com">
-    <img alt="OneShop" src="docs/logo.png" width="150"/>
+    <img alt="OneShop" src="docs/logo.png" width="80"/>
   </a>
-  <h3 align="center">
+  <h2 align="center">
     oneshop
-  </h3>
+  </h2>
 </p>
 
 <h4 align="center">
