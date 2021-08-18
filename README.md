@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://examsecure.rajrajhans.com">
-    <img alt="OneShop" src="docs/logo.png" width="80"/>
+    <img alt="OneShop" src="docs/logo.png" width="60"/>
   </a>
   <h2 align="center">
     oneshop
