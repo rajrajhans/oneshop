@@ -1,6 +1,11 @@
 import 'dotenv/config';
 import { config, createSchema } from '@keystone-next/keystone/schema';
 import { User } from './schamas/User';
+import { createAuth } from '@keystone-next/auth';
+import {
+  statelessSessions,
+  withItemData,
+} from '@keystone-next/keystone/session';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-oneshop';
@@ -10,25 +15,36 @@ const sessionConfig = {
   secret: process.env.COOKIE_SECRET,
 };
 
-export default config({
-  server: {
-    cors: {
-      origin: [process.env.FRONTEND_URL],
-      credentials: true,
-    },
+const { withAuth } = createAuth({
+  listKey: 'User',
+  identityField: 'email',
+  secretField: 'password',
+  initFirstItem: {
+    fields: ['name', 'email', 'password'],
+    //TODO: add initial roles here
   },
-  db: {
-    adapter: 'mongoose',
-    url: databaseURL,
-    // TODO: add data seeding
-  },
-  lists: createSchema({
-    // schema items
-    User,
-  }),
-  ui: {
-    // TODO: add roles
-    isAccessAllowed: () => true,
-  },
-  // TODO: add session values
 });
+
+export default withAuth(
+  config({
+    server: {
+      cors: {
+        origin: [process.env.FRONTEND_URL],
+        credentials: true,
+      },
+    },
+    db: {
+      adapter: 'mongoose',
+      url: databaseURL,
+      // TODO: add data seeding
+    },
+    lists: createSchema({
+      // schema items
+      User,
+    }),
+    ui: {
+      isAccessAllowed: ({ session }) => session?.data,
+    },
+    session: withItemData(statelessSessions(sessionConfig), { User: `id` }),
+  }),
+);
