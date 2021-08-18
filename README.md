@@ -1,11 +1,12 @@
 <p align="center">
   <a href="https://examsecure.rajrajhans.com">
-    <img alt="OneShop" src="docs/logo.png" width="60"/>
+    <img alt="OneShop" src="docs/logo.png" width="55"/>
   </a>
-  <h2 align="center">
-    oneshop
-  </h2>
 </p>
+
+<h1 align="center">
+  oneshop
+</h1>
 
 <h4 align="center">
   Simple Ecommerce Website built using NextJS, Keystone, Apollo, GraphQL 
