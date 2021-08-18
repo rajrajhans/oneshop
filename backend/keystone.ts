@@ -6,6 +6,7 @@ import {
   statelessSessions,
   withItemData,
 } from '@keystone-next/keystone/session';
+import { Product } from './schamas/Product';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-oneshop';
@@ -41,6 +42,7 @@ export default withAuth(
     lists: createSchema({
       // schema items
       User,
+      Product,
     }),
     ui: {
       isAccessAllowed: ({ session }) => session?.data,
