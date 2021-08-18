@@ -7,6 +7,7 @@ import {
   withItemData,
 } from '@keystone-next/keystone/session';
 import { Product } from './schamas/Product';
+import { ProductImage } from './schamas/ProductImage';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-oneshop';
@@ -43,6 +44,7 @@ export default withAuth(
       // schema items
       User,
       Product,
+      ProductImage,
     }),
     ui: {
       isAccessAllowed: ({ session }) => session?.data,
