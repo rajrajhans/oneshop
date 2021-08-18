@@ -9,7 +9,7 @@
 </h1>
 
 <h4 align="center">
-  Simple Ecommerce Website built using NextJS, Keystone, Apollo, GraphQL 
+  Simple ecommerce webapp built using NextJS, Keystone, Apollo, GraphQL 
 </h4>
 
 ### Technologies Used 
