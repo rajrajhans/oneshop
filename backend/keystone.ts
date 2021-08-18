@@ -8,6 +8,7 @@ import {
 } from '@keystone-next/keystone/session';
 import { Product } from './schamas/Product';
 import { ProductImage } from './schamas/ProductImage';
+import { insertDemoData } from './demo-data';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-oneshop';
@@ -38,7 +39,12 @@ export default withAuth(
     db: {
       adapter: 'mongoose',
       url: databaseURL,
-      // TODO: add data seeding
+      async onConnect(keystone) {
+        console.log('Connected to the database');
+        if (process.argv.includes('--demo-data')) {
+          await insertDemoData(keystone);
+        }
+      },
     },
     lists: createSchema({
       // schema items
