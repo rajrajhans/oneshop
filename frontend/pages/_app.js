@@ -14,7 +14,6 @@ const App = ({ Component, pageProps, apollo }) => {
   return (
     <ApolloProvider client={apollo}>
       <PageLayout>
-        <div>Hello from App112</div>
         <Component {...pageProps} />
       </PageLayout>
     </ApolloProvider>
