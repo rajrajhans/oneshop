@@ -109,17 +109,25 @@ const MobileNavLinks = motion(styled.div`
   }
 `);
 
-const NavItem = ({ navItem }) => (
+const HighlightedText = styled.span`
+  color: var(--accent);
+`;
+
+const NavItem = ({ navItem, router }) => (
   <NavItemContainer>
     <Link href={navItem.route}>
-      <a>{navItem.name}</a>
+      <a>
+        {router.pathname === navItem.route ? (
+          <HighlightedText>{navItem.name}</HighlightedText>
+        ) : (
+          <span>{navItem.name}</span>
+        )}
+      </a>
     </Link>
   </NavItemContainer>
 );
 
-const NavItemsMobile = ({ navItems, closeNavbar }) => {
-  const router = useRouter();
-
+const NavItemsMobile = ({ navItems, closeNavbar, router }) => {
   const handleClick = (path) => {
     closeNavbar();
     router.push(path).catch((e) => {
@@ -146,11 +154,13 @@ const NavItemsMobile = ({ navItems, closeNavbar }) => {
 
 const Nav = () => {
   const { showNavLinks, animation, toggleNavbar } = useAnimatedNavToggler();
+  const router = useRouter();
+
   return (
     <>
       <NavContainer>
         {navItems.map((navItem) => (
-          <NavItem key={navItem.id} navItem={navItem} />
+          <NavItem key={navItem.id} navItem={navItem} router={router} />
         ))}
       </NavContainer>
 
@@ -180,7 +190,11 @@ const Nav = () => {
           </NavToggler>
         </NavCloseContainer>
 
-        <NavItemsMobile navItems={navItems} closeNavbar={toggleNavbar} />
+        <NavItemsMobile
+          navItems={navItems}
+          closeNavbar={toggleNavbar}
+          router={router}
+        />
       </MobileNavLinks>
     </>
   );
