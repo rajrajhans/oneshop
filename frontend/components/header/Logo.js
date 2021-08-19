@@ -35,7 +35,7 @@ const LogoShapeInner = styled.div`
 `;
 
 const LogoText = styled.div`
-  font-weight: 700;
+  font-weight: 900;
   font-size: 1.9rem;
 `;
 

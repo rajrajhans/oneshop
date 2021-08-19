@@ -51,6 +51,10 @@ const GlobalStyles = createGlobalStyle`
 const InnerStyles = styled.div`
   margin: 0 auto;
   padding: 0 2rem;
+
+  @media only screen and (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const PageLayout = ({ children }) => {
