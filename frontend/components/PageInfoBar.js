@@ -5,7 +5,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 45px 20px 0 20px;
+  margin: 45px 20px 0 40px;
 
   @media only screen and (max-width: 768px) {
     margin-top: 35px;
