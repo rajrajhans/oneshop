@@ -11,6 +11,11 @@ const ProductWrapper = styled.div`
   margin: 40px;
   display: flex;
   flex-direction: column;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    margin: 20px 40px;
+  }
 `;
 
 const ProductImage = styled.div`
