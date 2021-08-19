@@ -2,7 +2,7 @@ export default function formatPrice(amount = 0) {
   const options = {
     style: 'currency',
     currency: 'INR',
-    minimumFractionDigits: 2,
+    minimumFractionDigits: 0,
   };
 
   const formatter = Intl.NumberFormat('en-IN', options);
