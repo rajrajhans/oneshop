@@ -8,7 +8,7 @@ const Container = styled.div`
   margin: 25px 20px 0 20px;
 
   @media only screen and (max-width: 768px) {
-    margin-top: 10px;
+    margin-top: 35px;
   }
 `;
 
@@ -18,11 +18,19 @@ const StyledMiddle = styled.div`
   transform: translateX(-50%);
   font-weight: 700;
   font-size: 2.1rem;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 1.9rem;
+  }
 `;
 
 const StyledLeft = styled.div`
   font-weight: 700;
   font-size: 0.9rem;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const PageInfoBar = ({ leftText, middleText, rightComponent }) => {
