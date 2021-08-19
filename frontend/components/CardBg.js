@@ -16,13 +16,15 @@ const InnerCardBg = styled.div`
   background: rgba(253, 195, 14, 0.6);
   box-shadow: 0 2px 2px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 
   width: 100%;
   height: 45vh;
   border-radius: 50px;
+
+  @media only screen and (max-width: 768px) {
+    border-radius: 30px;
+  }
 `;
 
 const Blob1Container = styled.div`
