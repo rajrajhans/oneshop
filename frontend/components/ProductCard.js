@@ -9,15 +9,27 @@ const ProductWrapper = styled.div`
   padding: 20px;
   width: 25%;
   margin: 40px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ProductImage = styled.div`
   margin: 10px 0;
   text-align: center;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
 
   img {
     max-width: 90%;
+    margin: auto;
+    max-height: 250px;
+    object-fit: cover;
   }
+`;
+
+const ProductDetails = styled.div`
+  margin-top: auto;
 `;
 
 const ProductName = styled.div`
@@ -44,8 +56,10 @@ const ProductCard = ({ product }) => {
           />
         }
       </ProductImage>
-      <ProductName>{product.name.substring(0, 25)}</ProductName>
-      <ProductPrice>{formatPrice(product.price)}</ProductPrice>
+      <ProductDetails>
+        <ProductName>{product.name.substring(0, 25)}</ProductName>
+        <ProductPrice>{formatPrice(product.price)}</ProductPrice>
+      </ProductDetails>
     </ProductWrapper>
   );
 };
