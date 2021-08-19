@@ -16,6 +16,9 @@ const ProductWrapper = styled.div`
     width: 100%;
     margin: 20px 40px;
   }
+  @media only screen and (min-width: 1500px) {
+    width: 15%;
+  }
 `;
 
 const ProductImage = styled.div`
