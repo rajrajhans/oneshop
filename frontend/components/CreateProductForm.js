@@ -2,30 +2,44 @@ import React from 'react';
 import useForm from '../utils/useForm';
 import styled from 'styled-components';
 import StyledForm from './StyledForm';
+import { useMutation } from '@apollo/client';
+import gql from 'graphql-tag';
+import ErrorMessage from './ErrorMessage';
 
 const CreateProductDetails = styled.div`
   margin-bottom: 40px;
   font-size: 1.1rem;
   font-weight: 400;
+  text-align: justify;
 `;
 
 const CreateProductForm = () => {
   const initialState = { name: '', price: '', description: '', image: '' };
-  const [inputs, handleChange] = useForm(initialState);
+  const [inputs, handleChange, resetForm] = useForm(initialState);
 
-  const handleSubmit = (e) => {
+  const [createProduct, { data, error, loading }] = useMutation(
+    CREATE_PRODUCT_MUTATION,
+    {
+      variables: inputs,
+    },
+  );
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    await createProduct();
+    resetForm();
   };
 
   return (
     <div>
+      <ErrorMessage error={error} />
       <CreateProductDetails>
         To add products to the oneshop inventory, please enter all the product
         details in the form below.
       </CreateProductDetails>
 
       <StyledForm onSubmit={handleSubmit}>
-        <fieldset>
+        <fieldset disabled={loading}>
           <div className="form-input">
             <label htmlFor={'name'}>Name</label>
             <input
@@ -83,5 +97,27 @@ const CreateProductForm = () => {
     </div>
   );
 };
+
+const CREATE_PRODUCT_MUTATION = gql`
+  mutation CREATE_PRODUCT_MUTATION(
+    $name: String!
+    $description: String!
+    $price: Int!
+    $image: Upload
+  ) {
+    createProduct(
+      data: {
+        name: $name
+        description: $description
+        price: $price
+        status: "AVAILABLE"
+        photo: { create: { image: $image, altText: $name } }
+      }
+    ) {
+      id
+      name
+    }
+  }
+`;
 
 export default CreateProductForm;
