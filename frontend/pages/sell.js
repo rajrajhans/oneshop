@@ -10,11 +10,19 @@ const FormContainer = styled.div`
   border-radius: 25px;
   box-shadow: 0 2px 2px 0 rgba(31, 38, 135, 0.37);
   margin: 40px 50px;
+
+  @media only screen and (max-width: 768px) {
+    margin: 40px 10px;
+  }
 `;
 
 const InnerFormContainer = styled.div`
   width: 50%;
   margin: auto;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Sell = () => {
