@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import formatPrice from '../utils/formatPrice';
 
-const ProductWrapper = styled.div`
+export const ProductWrapper = styled.div`
   background: white;
   border-radius: 20px;
   box-shadow: 0 3px 3px 0 rgba(31, 38, 135, 0.37);
@@ -21,7 +21,7 @@ const ProductWrapper = styled.div`
   }
 `;
 
-const ProductImage = styled.div`
+export const ProductImage = styled.div`
   margin: 10px 0;
   text-align: center;
   height: 250px;
@@ -36,17 +36,17 @@ const ProductImage = styled.div`
   }
 `;
 
-const ProductDetails = styled.div`
+export const ProductDetails = styled.div`
   margin-top: auto;
 `;
 
-const ProductName = styled.div`
+export const ProductName = styled.div`
   text-align: center;
   font-weight: 700;
   color: #3f3c93;
 `;
 
-const ProductPrice = styled.div`
+export const ProductPrice = styled.div`
   text-align: center;
   font-weight: 500;
   color: #3f3c93;
