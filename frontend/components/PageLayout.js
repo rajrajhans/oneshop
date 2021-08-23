@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header/Header';
 import styled, { createGlobalStyle } from 'styled-components';
+import Loading from './Loading';
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -61,6 +62,7 @@ const PageLayout = ({ children }) => {
   return (
     <>
       <GlobalStyles />
+      <Loading />
       <InnerStyles>
         <Header />
         {children}
