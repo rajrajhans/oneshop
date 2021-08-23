@@ -30,3 +30,5 @@ const useForm = (initialState = {}) => {
 
   return [inputState, handleChange, resetForm, clearForm];
 };
+
+export default useForm;
