@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useForm from '../utils/useForm';
 import styled from 'styled-components';
 import StyledForm from './StyledForm';
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
 import ErrorMessage from './ErrorMessage';
+import { useLoadingContext } from './LoadingContext';
 
 const CreateProductDetails = styled.div`
   margin-bottom: 40px;
@@ -16,6 +17,7 @@ const CreateProductDetails = styled.div`
 const CreateProductForm = () => {
   const initialState = { name: '', price: '', description: '', image: '' };
   const [inputs, handleChange, resetForm] = useForm(initialState);
+  const { toggleIsLoading } = useLoadingContext();
 
   const [createProduct, { data, error, loading }] = useMutation(
     CREATE_PRODUCT_MUTATION,
@@ -23,6 +25,10 @@ const CreateProductForm = () => {
       variables: inputs,
     },
   );
+
+  useEffect(() => {
+    loading ? toggleIsLoading(true) : toggleIsLoading(false);
+  }, [loading]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

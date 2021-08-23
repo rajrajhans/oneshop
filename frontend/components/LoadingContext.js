@@ -5,8 +5,8 @@ export const LoadingContext = createContext(null);
 export const LoadingProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const toggleIsLoading = () => {
-    setIsLoading((prevState) => !prevState);
+  const toggleIsLoading = (state) => {
+    setIsLoading(state);
   };
 
   return (
