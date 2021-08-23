@@ -5,6 +5,7 @@ import CardBg from '../components/CardBg';
 import PageInfoBar from '../components/PageInfoBar';
 import styled from 'styled-components';
 import ProductCard from '../components/ProductCard';
+import ProductCardSkeleton from '../components/ProductCardSkeleton';
 
 const StyledVerticalText = styled.div`
   writing-mode: vertical-lr;
@@ -42,12 +43,24 @@ const ProductsContainer = styled.div`
   margin-top: 20px;
 `;
 
+const ShopTopSection = () => (
+  <StyledPageDecorationContainer>
+    <CardBg />
+    <PageInfoBar
+      leftText={'All Products'}
+      middleText={'Shop'}
+      rightComponent={null}
+    />
+    <StyledVerticalText>Scroll down for more</StyledVerticalText>
+  </StyledPageDecorationContainer>
+);
+
 const Shop = () => {
   const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY);
   console.log(data, error, loading);
 
   if (loading) {
-    return <p>LOADING...</p>;
+    return <ShopLoading />;
   }
 
   if (error) {
@@ -56,16 +69,7 @@ const Shop = () => {
 
   return (
     <div>
-      <StyledPageDecorationContainer>
-        <CardBg />
-        <PageInfoBar
-          leftText={'All Products'}
-          middleText={'Shop'}
-          rightComponent={null}
-        />
-        <StyledVerticalText>Scroll down for more</StyledVerticalText>
-      </StyledPageDecorationContainer>
-
+      <ShopTopSection />
       <ProductsContainer>
         {data.allProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
@@ -93,3 +97,14 @@ const ALL_PRODUCTS_QUERY = gql`
     }
   }
 `;
+
+const ShopLoading = () => (
+  <div>
+    <ShopTopSection />
+    <ProductsContainer>
+      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((id) => (
+        <ProductCardSkeleton key={id} />
+      ))}
+    </ProductsContainer>
+  </div>
+);
