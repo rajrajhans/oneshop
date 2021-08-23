@@ -17,10 +17,10 @@ const LogoShapeInner = styled.div`
   background: ${(props) =>
     props.top && props.left ? 'var(--odd-shape-color)' : 'var(--shape-color)'};
   position: absolute;
-  top: ${(props) => (props.top ? '10px' : null)};
-  bottom: ${(props) => (props.bottom ? '10px' : null)};
-  left: ${(props) => (props.left ? '10px' : null)};
-  right: ${(props) => (props.right ? '10px' : null)};
+  top: ${(props) => (props.top ? 'var(--margin-size)' : null)};
+  bottom: ${(props) => (props.bottom ? 'var(--margin-size)' : null)};
+  left: ${(props) => (props.left ? 'var(--margin-size)' : null)};
+  right: ${(props) => (props.right ? 'var(--margin-size)' : null)};
   border-radius: 50%;
   transition: background 0.5s;
 `;

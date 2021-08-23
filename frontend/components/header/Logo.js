@@ -6,6 +6,7 @@ import LogoShape from './LogoShape';
 const LogoContainer = styled.div`
   --outer-size: 2.7rem;
   --inner-size: 6px;
+  --margin-size: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
