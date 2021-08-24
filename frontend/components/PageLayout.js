@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header/Header';
 import styled, { createGlobalStyle } from 'styled-components';
 import Loading from './Loading';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -66,7 +67,9 @@ const PageLayout = ({ children }) => {
       <Loading />
       <InnerStyles>
         <Header />
-        {children}
+        <SkeletonTheme color={'#f9f9f9'} highlightColor={'#ededed'}>
+          {children}
+        </SkeletonTheme>
       </InnerStyles>
     </>
   );

@@ -7,8 +7,9 @@ import CardBg from './CardBg';
 import PageInfoBar from './PageInfoBar';
 import styled from 'styled-components';
 import formatPrice from '../utils/formatPrice';
+import SingleProductSkeleton from './SingleProductSkeleton';
 
-const ProductDetailsContainer = styled.div`
+export const ProductDetailsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,7 +29,7 @@ const ProductDetailsContainer = styled.div`
   }
 `;
 
-const ProductName = styled.div`
+export const ProductName = styled.div`
   font-size: 2rem;
   font-weight: 800;
   color: var(--tertiary);
@@ -37,11 +38,11 @@ const ProductName = styled.div`
   }
 `;
 
-const ProductDescription = styled.div`
+export const ProductDescription = styled.div`
   color: #5a5a5a;
 `;
 
-const ProductImage = styled.div`
+export const ProductImage = styled.div`
   width: 50%;
   img {
     max-width: 100%;
@@ -58,24 +59,28 @@ const ProductImage = styled.div`
   }
 `;
 
-const ProductPrice = styled.div`
+export const ProductPrice = styled.div`
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--tertiary);
 `;
 
-const ProductDetailsLeftPanel = styled.div`
+export const ProductDetailsLeftPanel = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: auto 0;
+  width: 45%;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
-const ProductNameDesc = styled.div`
+export const ProductNameDesc = styled.div`
   margin-bottom: 20px;
 `;
 
-const HideOnMobile = styled.div`
+export const HideOnMobile = styled.div`
   @media only screen and (max-width: 768px) {
     display: none;
   }
@@ -88,7 +93,7 @@ const SingleProduct = ({ id }) => {
     },
   });
 
-  if (loading) return <p>LOADING</p>;
+  if (loading) return <SingleProductSkeleton />;
 
   if (error) return <ErrorMessage error={error} />;
 
