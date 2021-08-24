@@ -4,7 +4,7 @@ import CardBg from '../components/CardBg';
 import PageInfoBar from '../components/PageInfoBar';
 import styled from 'styled-components';
 
-const FormContainer = styled.div`
+export const FormContainer = styled.div`
   background: var(--light);
   padding: 25px;
   border-radius: 25px;
@@ -16,7 +16,7 @@ const FormContainer = styled.div`
   }
 `;
 
-const InnerFormContainer = styled.div`
+export const InnerFormContainer = styled.div`
   width: 50%;
   margin: auto;
 
