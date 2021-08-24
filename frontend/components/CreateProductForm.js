@@ -6,6 +6,7 @@ import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
 import ErrorMessage from './ErrorMessage';
 import { useLoadingContext } from './LoadingContext';
+import { ALL_PRODUCTS_QUERY } from '../pages/shop';
 
 const CreateProductDetails = styled.div`
   margin-bottom: 40px;
@@ -23,6 +24,7 @@ const CreateProductForm = () => {
     CREATE_PRODUCT_MUTATION,
     {
       variables: inputs,
+      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
     },
   );
 
