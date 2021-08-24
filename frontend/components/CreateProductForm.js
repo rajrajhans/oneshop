@@ -6,6 +6,8 @@ import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
 import ErrorMessage from './ErrorMessage';
 import { useLoadingContext } from './LoadingContext';
+import { ALL_PRODUCTS_QUERY } from '../pages/shop';
+import Router from 'next/router';
 
 const CreateProductDetails = styled.div`
   margin-bottom: 40px;
@@ -23,6 +25,7 @@ const CreateProductForm = () => {
     CREATE_PRODUCT_MUTATION,
     {
       variables: inputs,
+      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
     },
   );
 
@@ -32,8 +35,13 @@ const CreateProductForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createProduct();
+    const res = await createProduct();
     resetForm();
+    Router.push({ pathname: `/product/${res.data.createProduct.id}` }).catch(
+      (e) => {
+        console.log(e);
+      },
+    );
   };
 
   return (

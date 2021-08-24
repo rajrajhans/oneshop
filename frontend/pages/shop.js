@@ -81,7 +81,7 @@ const Shop = () => {
 
 export default Shop;
 
-const ALL_PRODUCTS_QUERY = gql`
+export const ALL_PRODUCTS_QUERY = gql`
   query AllProductsQuery {
     allProducts {
       id
