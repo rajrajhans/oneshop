@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import formatPrice from '../utils/formatPrice';
+import { useRouter } from 'next/router';
 
 export const ProductWrapper = styled.div`
   background: white;
@@ -11,6 +12,12 @@ export const ProductWrapper = styled.div`
   margin: 40px;
   display: flex;
   flex-direction: column;
+  transition: all 0.2s ease;
+
+  :hover {
+    cursor: pointer;
+    box-shadow: -2px -1px 17px 1px rgba(255, 128, 40, 0.56);
+  }
 
   @media only screen and (max-width: 768px) {
     width: 100%;
@@ -54,8 +61,16 @@ export const ProductPrice = styled.div`
 `;
 
 const ProductCard = ({ product }) => {
+  const router = useRouter();
+
   return (
-    <ProductWrapper>
+    <ProductWrapper
+      onClick={() => {
+        router.push(`/product/${product.id}`).catch((e) => {
+          console.log(e);
+        });
+      }}
+    >
       <ProductImage>
         {
           <img
