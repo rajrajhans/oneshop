@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import formatPrice from '../utils/formatPrice';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import EditIcon from '../public/assets/edit-icon.svg';
+import TrashIcon from '../public/assets/trash-icon.svg';
+import deleteProduct from '../utils/deleteProduct';
 
 export const ProductWrapper = styled.div`
   background: white;
@@ -70,9 +73,11 @@ const ButtonsBar = styled.div`
 `;
 
 const ProductButton = styled.button`
+  position: relative;
+  display: inline-block;
   border-bottom-left-radius: ${(props) => (props.left ? '20px' : null)};
   border-bottom-right-radius: ${(props) => (props.right ? '20px' : null)};
-  flex: ${(props) => (props.left ? '1' : null)};
+  flex: ${(props) => (props.center ? '1' : null)};
   padding: 8px 16px;
   background-color: var(--secondary);
   box-shadow: none;
@@ -83,8 +88,46 @@ const ProductButton = styled.button`
   font-family: 'Mulish', --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
+  .tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    bottom: 50px;
+    left: -50%;
+    font-weight: 400;
+    font-family: 'Mulish', --apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+      sans-serif;
+    z-index: 5;
+
+    :after {
+      content: ' ';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: var(--dark) transparent transparent transparent;
+    }
+  }
+
   :hover {
     background-color: var(--accent);
+
+    .tooltip {
+      visibility: visible;
+    }
+  }
+
+  svg {
+    width: 23px;
+    height: 23px;
   }
 `;
 
@@ -116,11 +159,24 @@ const ProductCard = ({ product }) => {
 
       <ButtonsBar>
         <Link href={{ pathname: 'update', query: { id: product.id } }}>
-          <ProductButton left={true}>Add To Cart</ProductButton>
+          <ProductButton left={true}>
+            <div className="tooltip">Edit Product</div>
+            <EditIcon />
+          </ProductButton>
         </Link>
         <Link href={{ pathname: 'update', query: { id: product.id } }}>
-          <ProductButton right={true}>Edit</ProductButton>
+          <ProductButton center={true}>Add To Cart</ProductButton>
         </Link>
+
+        <ProductButton
+          right={true}
+          onClick={() => {
+            deleteProduct(product.id);
+          }}
+        >
+          <div className="tooltip">Delete Product</div>
+          <TrashIcon />
+        </ProductButton>
       </ButtonsBar>
     </ProductWrapper>
   );
