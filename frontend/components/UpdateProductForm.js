@@ -7,6 +7,7 @@ import useForm from '../utils/useForm';
 import { useLoadingContext } from './LoadingContext';
 import StyledForm from './StyledForm';
 import ErrorMessage from './ErrorMessage';
+import Skeleton from 'react-loading-skeleton';
 
 const UpdateProduct = () => {
   const router = useRouter();
@@ -18,19 +19,19 @@ const UpdateProduct = () => {
   const [
     updateProduct,
     { data: updateData, error: updateError, loading: updateLoading },
-  ] = useMutation(UPDATE_PRODUCT_MUTATION);
+  ] = useMutation(UPDATE_PRODUCT_MUTATION, {
+    refetchQueries: ['PRODUCT_QUERY', 'AllProductsQuery'],
+  });
+
   const [inputs, handleChange, resetForm] = useForm(data?.Product);
   const { toggleIsLoading } = useLoadingContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('updated inputs', inputs);
-
-    const res = await updateProduct({
+    await updateProduct({
       variables: {
         id,
-
         name: inputs.name,
         description: inputs.description,
         price: inputs.price,
@@ -38,17 +39,13 @@ const UpdateProduct = () => {
     }).catch((e) => {
       console.log(e);
     });
-
-    console.log('res', res);
-
-    resetForm();
   };
 
   useEffect(() => {
     updateLoading ? toggleIsLoading(true) : toggleIsLoading(false);
   }, [updateLoading]);
 
-  if (loading) return <p>LOADING:>>L></p>;
+  if (loading) return <Skeleton count={1} />;
 
   return (
     <div>
