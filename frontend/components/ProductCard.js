@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import formatPrice from '../utils/formatPrice';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export const ProductWrapper = styled.div`
   background: white;
   border-radius: 20px;
   box-shadow: 0 3px 3px 0 rgba(31, 38, 135, 0.37);
-  padding: 20px;
+  padding: 0;
   width: 25%;
   margin: 40px;
   display: flex;
@@ -26,6 +27,10 @@ export const ProductWrapper = styled.div`
   @media only screen and (min-width: 1500px) {
     width: 15%;
   }
+`;
+
+const ProductDetailsWrapper = styled.div`
+  padding: 20px;
 `;
 
 export const ProductImage = styled.div`
@@ -60,29 +65,63 @@ export const ProductPrice = styled.div`
   margin-top: 10px;
 `;
 
+const ButtonsBar = styled.div`
+  display: flex;
+`;
+
+const ProductButton = styled.button`
+  border-bottom-left-radius: ${(props) => (props.left ? '20px' : null)};
+  border-bottom-right-radius: ${(props) => (props.right ? '20px' : null)};
+  flex: ${(props) => (props.left ? '1' : null)};
+  padding: 8px 16px;
+  background-color: var(--secondary);
+  box-shadow: none;
+  color: #000;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Mulish', --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  :hover {
+    background-color: var(--accent);
+  }
+`;
+
 const ProductCard = ({ product }) => {
   const router = useRouter();
 
   return (
-    <ProductWrapper
-      onClick={() => {
-        router.push(`/product/${product.id}`).catch((e) => {
-          console.log(e);
-        });
-      }}
-    >
-      <ProductImage>
-        {
-          <img
-            src={product?.photo?.image?.publicUrlTransformed}
-            alt={product?.photo?.image?.altText}
-          />
-        }
-      </ProductImage>
-      <ProductDetails>
-        <ProductName>{product.name.substring(0, 25)}</ProductName>
-        <ProductPrice>{formatPrice(product.price)}</ProductPrice>
-      </ProductDetails>
+    <ProductWrapper>
+      <ProductDetailsWrapper
+        onClick={() => {
+          router.push(`/product/${product.id}`).catch((e) => {
+            console.log(e);
+          });
+        }}
+      >
+        <ProductImage>
+          {
+            <img
+              src={product?.photo?.image?.publicUrlTransformed}
+              alt={product?.photo?.image?.altText}
+            />
+          }
+        </ProductImage>
+        <ProductDetails>
+          <ProductName>{product.name.substring(0, 25)}</ProductName>
+          <ProductPrice>{formatPrice(product.price)}</ProductPrice>
+        </ProductDetails>
+      </ProductDetailsWrapper>
+
+      <ButtonsBar>
+        <Link href={{ pathname: 'update', query: { id: product.id } }}>
+          <ProductButton left={true}>Add To Cart</ProductButton>
+        </Link>
+        <Link href={{ pathname: 'update', query: { id: product.id } }}>
+          <ProductButton right={true}>Edit</ProductButton>
+        </Link>
+      </ButtonsBar>
     </ProductWrapper>
   );
 };
