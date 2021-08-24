@@ -3,6 +3,83 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 import ErrorMessage from './ErrorMessage';
 import Head from 'next/head';
+import CardBg from './CardBg';
+import PageInfoBar from './PageInfoBar';
+import styled from 'styled-components';
+import formatPrice from '../utils/formatPrice';
+
+const ProductDetailsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 3px solid white;
+  border-radius: 20px;
+  padding: 20px 50px;
+  width: 90%;
+  margin: 50px auto;
+  background: var(--light);
+  box-shadow: -2px 3px 11px -1px rgba(255, 128, 40, 0.56);
+
+  @media only screen and (max-width: 768px) {
+    margin: 25px 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 15px;
+  }
+`;
+
+const ProductName = styled.div`
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--tertiary);
+  @media only screen and (max-width: 768px) {
+    font-size: 1.8rem;
+  }
+`;
+
+const ProductDescription = styled.div`
+  color: #5a5a5a;
+`;
+
+const ProductImage = styled.div`
+  width: 50%;
+  img {
+    max-width: 100%;
+    border-radius: 20px;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+
+    img {
+      border-radius: 10px;
+    }
+  }
+`;
+
+const ProductPrice = styled.div`
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--tertiary);
+`;
+
+const ProductDetailsLeftPanel = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto 0;
+`;
+
+const ProductNameDesc = styled.div`
+  margin-bottom: 20px;
+`;
+
+const HideOnMobile = styled.div`
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+`;
 
 const SingleProduct = ({ id }) => {
   const { data, loading, error } = useQuery(SINGLE_PRODUCT_QUERY, {
@@ -20,7 +97,32 @@ const SingleProduct = ({ id }) => {
       <Head>
         <title>{data.Product.name} | oneshop</title>
       </Head>
-      {data.Product.name}
+      <div>
+        <CardBg />
+        <HideOnMobile>
+          <PageInfoBar
+            leftText={null}
+            middleText={'Product Details'}
+            rightComponent={null}
+          />
+        </HideOnMobile>
+      </div>
+
+      <ProductDetailsContainer>
+        <ProductDetailsLeftPanel>
+          <ProductNameDesc>
+            <ProductName>{data.Product.name}</ProductName>
+            <ProductDescription>{data.Product.description}</ProductDescription>
+          </ProductNameDesc>
+          <ProductPrice>{formatPrice(data.Product.price)}</ProductPrice>
+        </ProductDetailsLeftPanel>
+        <ProductImage>
+          <img
+            src={data.Product.photo.image.publicUrlTransformed}
+            alt={data.Product.photo.altText}
+          />
+        </ProductImage>
+      </ProductDetailsContainer>
     </div>
   );
 };

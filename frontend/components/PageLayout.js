@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
     --light: #ffeabe;
     --black: #393939;
     --secondary: #fdc30e;
+    --tertiary: #534688;
     --accent: #ff8028;
     --dark: #d64208;
   }
