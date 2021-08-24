@@ -4,9 +4,14 @@ import { useMutation } from '@apollo/client';
 import { useLoadingContext } from './LoadingContext';
 import { ProductButton } from './ProductCard';
 
+function evictProductFromCache(cache, payload) {
+  cache.evict(cache.identify(payload.data.deleteProduct));
+}
+
 const DeleteProduct = ({ id, children }) => {
   const [deleteProduct] = useMutation(DELETE_PRODUCT_MUTATION, {
     variables: { id },
+    update: evictProductFromCache,
   });
 
   const { toggleIsLoading } = useLoadingContext();
