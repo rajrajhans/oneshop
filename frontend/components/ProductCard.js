@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import EditIcon from '../public/assets/edit-icon.svg';
 import TrashIcon from '../public/assets/trash-icon.svg';
-import deleteProduct from '../utils/deleteProduct';
+import DeleteProductButton from './DeleteProduct';
 
 export const ProductWrapper = styled.div`
   background: white;
@@ -72,7 +72,7 @@ const ButtonsBar = styled.div`
   display: flex;
 `;
 
-const ProductButton = styled.button`
+export const ProductButton = styled.button`
   position: relative;
   display: inline-block;
   border-bottom-left-radius: ${(props) => (props.left ? '20px' : null)};
@@ -168,15 +168,10 @@ const ProductCard = ({ product }) => {
           <ProductButton center={true}>Add To Cart</ProductButton>
         </Link>
 
-        <ProductButton
-          right={true}
-          onClick={() => {
-            deleteProduct(product.id);
-          }}
-        >
+        <DeleteProductButton id={product.id}>
           <div className="tooltip">Delete Product</div>
           <TrashIcon />
-        </ProductButton>
+        </DeleteProductButton>
       </ButtonsBar>
     </ProductWrapper>
   );
