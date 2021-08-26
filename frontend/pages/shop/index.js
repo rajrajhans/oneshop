@@ -8,6 +8,7 @@ import ProductCard from '../../components/ProductCard';
 import ProductCardSkeleton from '../../components/ProductCardSkeleton';
 import Pagination from '../../components/Pagination';
 import { useRouter } from 'next/router';
+import { ProductsPerPage } from '../../config';
 
 const StyledVerticalText = styled.div`
   writing-mode: vertical-lr;
@@ -58,9 +59,15 @@ const ShopTopSection = () => (
 );
 
 const Shop = () => {
-  const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY);
   const { query } = useRouter();
   const page = parseInt(query.page);
+
+  const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY, {
+    variables: {
+      skip: (page - 1) * ProductsPerPage,
+      productsPerPage: ProductsPerPage,
+    },
+  });
 
   if (loading) {
     return <ShopLoading />;
@@ -85,9 +92,12 @@ const Shop = () => {
 
 export default Shop;
 
+// $skip is the number of products we need to skip (ex. if perPage is 3, and we are on page 2,
+// then we need to skip first 3 products, if we on page 3
+
 export const ALL_PRODUCTS_QUERY = gql`
-  query AllProductsQuery {
-    allProducts {
+  query AllProductsQuery($skip: Int = 0, $productsPerPage: Int!) {
+    allProducts(first: $productsPerPage, skip: $skip) {
       id
       name
       price

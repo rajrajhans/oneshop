@@ -94,7 +94,7 @@ const Pagination = ({ page }) => {
         </p>
         <p>{count} products total</p>
 
-        <Link href={`/products/${page + 1}`}>
+        <Link href={`/shop/${page + 1}`}>
           <PaginationLink right={true} aria-disabled={page === pageCount}>
             Next →
           </PaginationLink>
