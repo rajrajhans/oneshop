@@ -39,7 +39,7 @@ const PaginationContainer = styled.div`
   justify-content: center;
 `;
 
-const PaginationLink = styled.div`
+const PaginationLink = styled.a`
   background-color: var(--light);
   font-weight: 600;
   transition: all 0.2s ease;
@@ -52,10 +52,16 @@ const PaginationLink = styled.div`
 
   :hover {
     background-color: var(--accent);
+    text-decoration: none;
   }
 
   text-decoration: none;
   cursor: pointer;
+
+  &[aria-disabled='true'] {
+    color: grey;
+    pointer-events: none;
+  }
 `;
 
 const Pagination = ({ page }) => {
@@ -77,15 +83,19 @@ const Pagination = ({ page }) => {
           </title>
         </Head>
 
-        <Link href={'/'}>
-          <PaginationLink left={true}>← Prev</PaginationLink>
+        <Link href={`/products/${page - 1}`}>
+          <PaginationLink left={true} aria-disabled={page === 1}>
+            ← Prev
+          </PaginationLink>
         </Link>
 
         <p>Page 1 of {pageCount}</p>
         <p>{count} products total</p>
 
-        <Link href={'/'}>
-          <PaginationLink right={true}>Next →</PaginationLink>
+        <Link href={`/products/${page + 1}`}>
+          <PaginationLink right={true} aria-disabled={page === count}>
+            Next →
+          </PaginationLink>
         </Link>
       </PaginationStyles>
     </PaginationContainer>

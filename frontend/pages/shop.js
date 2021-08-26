@@ -6,6 +6,7 @@ import PageInfoBar from '../components/PageInfoBar';
 import styled from 'styled-components';
 import ProductCard from '../components/ProductCard';
 import ProductCardSkeleton from '../components/ProductCardSkeleton';
+import Pagination from '../components/Pagination';
 
 const StyledVerticalText = styled.div`
   writing-mode: vertical-lr;
@@ -75,6 +76,7 @@ const Shop = () => {
           <ProductCard key={product.id} product={product} />
         ))}
       </ProductsContainer>
+      <Pagination page={1} />
     </div>
   );
 };
