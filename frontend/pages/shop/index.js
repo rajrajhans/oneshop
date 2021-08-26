@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import ProductCard from '../../components/ProductCard';
 import ProductCardSkeleton from '../../components/ProductCardSkeleton';
 import Pagination from '../../components/Pagination';
+import { useRouter } from 'next/router';
 
 const StyledVerticalText = styled.div`
   writing-mode: vertical-lr;
@@ -58,7 +59,8 @@ const ShopTopSection = () => (
 
 const Shop = () => {
   const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY);
-  console.log(data, error, loading);
+  const { query } = useRouter();
+  const page = parseInt(query.page);
 
   if (loading) {
     return <ShopLoading />;
@@ -76,7 +78,7 @@ const Shop = () => {
           <ProductCard key={product.id} product={product} />
         ))}
       </ProductsContainer>
-      <Pagination page={1} />
+      <Pagination page={page || 1} />
     </div>
   );
 };
