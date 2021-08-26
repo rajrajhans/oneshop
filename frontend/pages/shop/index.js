@@ -1,12 +1,12 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
-import CardBg from '../components/CardBg';
-import PageInfoBar from '../components/PageInfoBar';
+import CardBg from '../../components/CardBg';
+import PageInfoBar from '../../components/PageInfoBar';
 import styled from 'styled-components';
-import ProductCard from '../components/ProductCard';
-import ProductCardSkeleton from '../components/ProductCardSkeleton';
-import Pagination from '../components/Pagination';
+import ProductCard from '../../components/ProductCard';
+import ProductCardSkeleton from '../../components/ProductCardSkeleton';
+import Pagination from '../../components/Pagination';
 
 const StyledVerticalText = styled.div`
   writing-mode: vertical-lr;
