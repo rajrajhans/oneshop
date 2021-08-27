@@ -7,13 +7,30 @@ import CloseIcon from '../../public/close-icon.svg';
 import Cart from './Cart';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import { useUser } from '../../utils/useUser';
 
-const navItems = [
+const navItemsForAllUsers = [
   {
     name: 'Home',
     route: '/',
     id: 1,
   },
+];
+
+const navItemsForUnAuthenticatedUsers = [
+  {
+    name: 'Sign In',
+    route: '/sign-in',
+    id: 5,
+  },
+  {
+    name: 'Sign Up',
+    route: '/sign-up',
+    id: 6,
+  },
+];
+
+const navItemsForAuthenticatedUsers = [
   {
     name: 'Shop',
     route: '/shop',
@@ -155,13 +172,22 @@ const NavItemsMobile = ({ navItems, closeNavbar, router }) => {
 const Nav = () => {
   const { showNavLinks, animation, toggleNavbar } = useAnimatedNavToggler();
   const router = useRouter();
+  const user = useUser();
 
   return (
     <>
       <NavContainer>
-        {navItems.map((navItem) => (
+        {navItemsForAllUsers.map((navItem) => (
           <NavItem key={navItem.id} navItem={navItem} router={router} />
         ))}
+
+        {user
+          ? navItemsForAuthenticatedUsers.map((navItem) => (
+              <NavItem key={navItem.id} navItem={navItem} router={router} />
+            ))
+          : navItemsForUnAuthenticatedUsers.map((navItem) => (
+              <NavItem key={navItem.id} navItem={navItem} router={router} />
+            ))}
       </NavContainer>
 
       <Cart />
@@ -191,10 +217,22 @@ const Nav = () => {
         </NavCloseContainer>
 
         <NavItemsMobile
-          navItems={navItems}
+          navItems={navItemsForAllUsers}
           closeNavbar={toggleNavbar}
           router={router}
         />
+
+        {user ? (
+          <NavItemsMobile
+            navItems={navItemsForAuthenticatedUsers}
+            closeNavbar={toggleNavbar}
+            router={router}
+          />
+        ) : (
+          navItemsForUnAuthenticatedUsers.map((navItem) => (
+            <NavItem key={navItem.id} navItem={navItem} router={router} />
+          ))
+        )}
       </MobileNavLinks>
     </>
   );
