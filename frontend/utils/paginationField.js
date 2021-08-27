@@ -1,4 +1,5 @@
 import { COUNT_NUM_OF_PRODUCTS } from '../components/Pagination';
+import { useQuery } from '@apollo/client';
 
 /*
  * the order of methods called by apollo
@@ -20,8 +21,16 @@ export default function paginationField() {
        *   2. return "false", which will trigger a network request
        */
       const { skip, first } = args;
-      const data = cache.readQuery({ query: COUNT_NUM_OF_PRODUCTS }); // reading the num of items on the page from cache
-      const count = data?._allProductsMeta?.count;
+      const dataFromCache = cache.readQuery({ query: COUNT_NUM_OF_PRODUCTS }); // reading the num of items on the page from cache
+      let count;
+
+      if (!dataFromCache) {
+        const { data } = useQuery(COUNT_NUM_OF_PRODUCTS);
+        count = data?._allProductsMeta?.count;
+      } else {
+        count = dataFromCache?._allProductsMeta?.count;
+      }
+
       const page = skip / first + 1; // current page number
       const pages = Math.ceil(count / first); // the total number of pages
 
