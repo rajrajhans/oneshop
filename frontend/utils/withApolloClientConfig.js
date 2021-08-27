@@ -4,6 +4,7 @@ import { createUploadLink } from 'apollo-upload-client';
 import { devEndpoint, prodEndpoint } from '../config';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 import withApollo from 'next-with-apollo';
+import paginationField from './paginationField';
 
 function createClient({ headers, initialState }) {
   return new ApolloClient({
@@ -34,7 +35,13 @@ function createClient({ headers, initialState }) {
       typePolicies: {
         Query: {
           fields: {
-            // TODO
+            /*
+             this is to override cache behaviour when a field comes in.
+             we are doing this to fix the pagination query cache issue where when a product is deleted, pagination gets messed up.
+             instead of a key value cache dependent of pagination skip and first options, we want a simple list of products,
+             wherein we can simply rearrange the pagination order when one of the items in that list gets deleted.
+            */
+            allProducts: paginationField(),
           },
         },
       },
