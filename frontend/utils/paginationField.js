@@ -1,5 +1,4 @@
 import { COUNT_NUM_OF_PRODUCTS } from '../components/Pagination';
-import { useQuery } from '@apollo/client';
 
 /*
  * the order of methods called by apollo
@@ -24,19 +23,14 @@ export default function paginationField() {
       const dataFromCache = cache.readQuery({ query: COUNT_NUM_OF_PRODUCTS }); // reading the num of items on the page from cache
       let count;
 
-      if (!dataFromCache) {
-        const { data } = useQuery(COUNT_NUM_OF_PRODUCTS);
-        count = data?._allProductsMeta?.count;
-      } else {
-        count = dataFromCache?._allProductsMeta?.count;
-      }
+      count = dataFromCache?._allProductsMeta?.count;
 
       const page = skip / first + 1; // current page number
       const pages = Math.ceil(count / first); // the total number of pages
 
       const items = existing.slice(skip, skip + first).filter((x) => x); // check if we have existing items. the filter is to weed out undefined items
 
-      if (items.length && items.length !== first && page === pages) {
+      if (items.length && items.length !== first) {
         // to handle the case when there are items, but they are not equal to the ones we want
         // this only happens in the last page (we cant go get more because there arent more)
         // example: 5 products in total, perPage is 3. so last page will only have 2 instead of 3.
