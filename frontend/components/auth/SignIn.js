@@ -35,19 +35,22 @@ const SignIn = () => {
 
   useEffect(() => {
     loading ? toggleIsLoading(true) : toggleIsLoading(false);
-    if (data?.authenticateUserWithPassword.code === 'FAILURE') {
-      setLoginError({
-        message: 'Login Failed. Please try again.',
-      });
-    }
-  }, [loading, data]);
+  }, [loading]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoginError(null);
     resetForm();
-    await signIn();
-    router.push('/shop').catch((e) => console.log(e));
+    const res = await signIn();
+    console.log(res?.data?.authenticateUserWithPassword?.code);
+
+    if (res?.data?.authenticateUserWithPassword?.code === 'FAILURE') {
+      setLoginError({
+        message: 'Login Failed. Please try again.',
+      });
+    } else {
+      router.push('/shop').catch((e) => console.log(e));
+    }
   };
 
   return (
@@ -79,6 +82,7 @@ const SignIn = () => {
                   placeholder={'Your Email'}
                   onChange={onChangeHandler}
                   value={inputs.email}
+                  required={true}
                 />
               </div>
 
@@ -92,6 +96,7 @@ const SignIn = () => {
                   placeholder={'Your Password'}
                   onChange={onChangeHandler}
                   value={inputs.password}
+                  required={true}
                 />
               </div>
 
