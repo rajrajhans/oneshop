@@ -9,6 +9,7 @@ import ProductCardSkeleton from '../../components/ProductCardSkeleton';
 import Pagination from '../../components/Pagination';
 import { useRouter } from 'next/router';
 import { ProductsPerPage } from '../../config';
+import ErrorMessage from '../../components/ErrorMessage';
 
 const StyledVerticalText = styled.div`
   writing-mode: vertical-lr;
@@ -62,9 +63,11 @@ const Shop = () => {
   const { query } = useRouter();
   const page = parseInt(query.page);
 
+  const skipValue = page ? (page - 1) * ProductsPerPage : 0;
+
   const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY, {
     variables: {
-      skip: (page - 1) * ProductsPerPage,
+      skip: skipValue,
       productsPerPage: ProductsPerPage,
     },
   });
@@ -74,7 +77,7 @@ const Shop = () => {
   }
 
   if (error) {
-    return <p>ERROR: {error.message}</p>;
+    return <ErrorMessage error={error} />;
   }
 
   return (
