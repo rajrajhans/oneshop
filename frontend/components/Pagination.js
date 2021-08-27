@@ -104,7 +104,7 @@ const Pagination = ({ page }) => {
   );
 };
 
-const COUNT_NUM_OF_PRODUCTS = gql`
+export const COUNT_NUM_OF_PRODUCTS = gql`
   query COUNT_NUM_OF_PRODUCTS {
     _allProductsMeta {
       count
