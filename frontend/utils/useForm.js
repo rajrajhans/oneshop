@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 
 const useForm = (initialState = {}) => {
   const [inputState, setInputState] = useState(initialState);
+  const initialValues = Object.values(initialState).join('');
 
   useEffect(() => {
     setInputState(initialState);
-  }, [initialState]);
+  }, [initialValues]);
 
   const handleChange = (e) => {
     let { value, name, type } = e.target;
