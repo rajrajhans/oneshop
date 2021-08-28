@@ -2,10 +2,13 @@ import styled, { keyframes } from 'styled-components';
 
 const DropDown = styled.div`
   position: absolute;
-  width: 100%;
   z-index: 2;
-  border: 0;
   margin-top: 8px;
+  right: 0;
+  width: 400px;
+  background: var(--light);
+  border-radius: 20px;
+  border: 1px solid var(--lightGrey);
 `;
 
 const DropDownItem = styled.div`
@@ -18,6 +21,7 @@ const DropDownItem = styled.div`
   align-items: center;
   border-left: 10px solid
     ${(props) => (props.highlighted ? props.theme.lightgrey : 'var(--light)')};
+  border-radius: 20px;
   img {
     margin-right: 10px;
   }
