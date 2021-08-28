@@ -6,7 +6,7 @@ import Link from 'next/link';
 import EditIcon from '../public/assets/edit-icon.svg';
 import TrashIcon from '../public/assets/trash-icon.svg';
 import DeleteProductButton from './DeleteProduct';
-import useCart from './cart/useCart';
+import useAddToCart from './cart/useAddToCart';
 import { useLoadingContext } from './LoadingContext';
 import ErrorMessage from './ErrorMessage';
 
@@ -136,7 +136,7 @@ export const ProductButton = styled.button`
 
 const ProductCard = ({ product }) => {
   const router = useRouter();
-  const { addToCart, error, loading } = useCart(product.id);
+  const { addToCart, error } = useAddToCart(product.id);
   const { toggleIsLoading } = useLoadingContext();
 
   const handleAddToCartClick = async () => {
