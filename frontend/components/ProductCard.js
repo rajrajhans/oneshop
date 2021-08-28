@@ -6,6 +6,10 @@ import Link from 'next/link';
 import EditIcon from '../public/assets/edit-icon.svg';
 import TrashIcon from '../public/assets/trash-icon.svg';
 import DeleteProductButton from './DeleteProduct';
+import useAddToCart from './cart/useAddToCart';
+import { useLoadingContext } from './LoadingContext';
+import ErrorMessage from './ErrorMessage';
+import { CartStateContext } from './cart/CartState';
 
 export const ProductWrapper = styled.div`
   background: white;
@@ -133,6 +137,17 @@ export const ProductButton = styled.button`
 
 const ProductCard = ({ product }) => {
   const router = useRouter();
+  const { addToCart, error } = useAddToCart(product.id);
+  const { toggleIsLoading } = useLoadingContext();
+  const { incrementCartCount, openCart } = CartStateContext();
+
+  const handleAddToCartClick = async () => {
+    toggleIsLoading(true);
+    incrementCartCount();
+    await addToCart();
+    toggleIsLoading(false);
+    openCart();
+  };
 
   return (
     <ProductWrapper>
@@ -164,15 +179,17 @@ const ProductCard = ({ product }) => {
             <EditIcon />
           </ProductButton>
         </Link>
-        <Link href={{ pathname: 'update', query: { id: product.id } }}>
-          <ProductButton center={true}>Add To Cart</ProductButton>
-        </Link>
+
+        <ProductButton center={true} onClick={handleAddToCartClick}>
+          Add To Cart
+        </ProductButton>
 
         <DeleteProductButton id={product.id}>
           <div className="tooltip">Delete Product</div>
           <TrashIcon />
         </DeleteProductButton>
       </ButtonsBar>
+      <ErrorMessage error={error} />
     </ProductWrapper>
   );
 };

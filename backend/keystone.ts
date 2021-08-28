@@ -9,6 +9,7 @@ import {
 import { Product } from './schamas/Product';
 import { ProductImage } from './schamas/ProductImage';
 import { insertDemoData } from './demo-data';
+import { extendGraphQlSchema } from './mutations';
 import { CartItem } from './schamas/CartItem';
 
 const databaseURL =
@@ -54,6 +55,7 @@ export default withAuth(
       ProductImage,
       CartItem,
     }),
+    extendGraphqlSchema: extendGraphQlSchema,
     ui: {
       isAccessAllowed: ({ session }) => session?.data,
     },

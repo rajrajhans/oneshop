@@ -3,6 +3,8 @@ import Header from './header/Header';
 import styled, { createGlobalStyle } from 'styled-components';
 import Loading from './Loading';
 import { SkeletonTheme } from 'react-loading-skeleton';
+import Cart from './cart/Cart';
+import { CartStateProvider } from './cart/CartState';
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -63,14 +65,17 @@ const InnerStyles = styled.div`
 const PageLayout = ({ children }) => {
   return (
     <>
-      <GlobalStyles />
-      <Loading />
-      <InnerStyles>
-        <Header />
-        <SkeletonTheme color={'#f9f9f9'} highlightColor={'#ededed'}>
-          {children}
-        </SkeletonTheme>
-      </InnerStyles>
+      <CartStateProvider>
+        <GlobalStyles />
+        <Loading />
+        <Cart />
+        <InnerStyles>
+          <Header />
+          <SkeletonTheme color={'#f9f9f9'} highlightColor={'#ededed'}>
+            {children}
+          </SkeletonTheme>
+        </InnerStyles>
+      </CartStateProvider>
     </>
   );
 };

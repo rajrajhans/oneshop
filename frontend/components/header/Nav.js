@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import useAnimatedNavToggler from '../../utils/useAnimatedNavToggler';
 import MenuIcon from '../../public/menu-icon.svg';
 import CloseIcon from '../../public/close-icon.svg';
-import Cart from './Cart';
+import CartIcon from '../cart/CartIcon';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useUser } from '../../utils/useUser';
@@ -198,7 +198,7 @@ const Nav = () => {
 
       {user && (
         <RightIcons>
-          <Cart />
+          <CartIcon />
           <SignOut />
         </RightIcons>
       )}

@@ -11,7 +11,7 @@ const LoadingContainer = styled.div`
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.2);
-  z-index: 5;
+  z-index: 50;
   animation: LogoZoomInZoomOut 1.2s infinite;
 
   --outer-size: 5.4rem;
