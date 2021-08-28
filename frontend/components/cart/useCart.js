@@ -6,6 +6,7 @@ export default function useCart(productId) {
     variables: {
       id: productId,
     },
+    refetchQueries: ['CURRENT_USER_QUERY'],
   });
 
   return { addToCart, loading, error };
