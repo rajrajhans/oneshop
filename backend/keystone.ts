@@ -9,6 +9,7 @@ import {
 import { Product } from './schamas/Product';
 import { ProductImage } from './schamas/ProductImage';
 import { insertDemoData } from './demo-data';
+import { extendGraphQlSchema } from './mutations';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-oneshop';
@@ -52,6 +53,7 @@ export default withAuth(
       Product,
       ProductImage,
     }),
+    extendGraphqlSchema: extendGraphQlSchema,
     ui: {
       isAccessAllowed: ({ session }) => session?.data,
     },
