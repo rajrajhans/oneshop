@@ -22,7 +22,9 @@ const Search = () => {
     },
   );
 
-  const debouncedFindItems = debounce(findProducts, 360);
+  const products = data?.searchTerms || [];
+
+  const debouncedFindItems = debounce(findProducts, 180);
 
   const { inputValue, getMenuProps, getInputProps, getComboboxProps } =
     useCombobox({
@@ -49,16 +51,14 @@ const Search = () => {
             type: 'search',
             placeholder: '🔎 Search Products',
             id: 'search',
-            className: 'loading',
+            className: loading ? 'loading' : '',
           })}
         />
       </div>
       <DropDown {...getMenuProps()}>
-        <DropDownItem>etjg</DropDownItem>
-        <DropDownItem>etjg</DropDownItem>
-        <DropDownItem>etjg</DropDownItem>
-        <DropDownItem>etjg</DropDownItem>
-        <DropDownItem>etjg</DropDownItem>
+        {products.map((product) => (
+          <DropDownItem>{product.name}</DropDownItem>
+        ))}
       </DropDown>
     </SearchStyles>
   );

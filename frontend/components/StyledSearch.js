@@ -4,7 +4,8 @@ const DropDown = styled.div`
   position: absolute;
   width: 100%;
   z-index: 2;
-  border: 1px solid var(--lightGrey);
+  border: 0;
+  margin-top: 8px;
 `;
 
 const DropDownItem = styled.div`
@@ -24,10 +25,10 @@ const DropDownItem = styled.div`
 
 const glow = keyframes`
   from {
-    box-shadow: 0 0 0px yellow;
+    box-shadow: 0 0 0 var(--dark);
   }
   to {
-    box-shadow: 0 0 10px 1px yellow;
+    box-shadow: 0 0 20px 2px var(--dark);
   }
 `;
 
