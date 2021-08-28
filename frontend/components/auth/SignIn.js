@@ -32,7 +32,7 @@ const SignIn = () => {
   );
   const { toggleIsLoading } = useLoadingContext();
   const router = useRouter();
-  console.log('router', router);
+  const { query } = router;
 
   useEffect(() => {
     loading ? toggleIsLoading(true) : toggleIsLoading(false);
@@ -43,7 +43,6 @@ const SignIn = () => {
     setLoginError(null);
     resetForm();
     const res = await signIn();
-    console.log(res?.data?.authenticateUserWithPassword?.code);
 
     if (res?.data?.authenticateUserWithPassword?.code === 'FAILURE') {
       setLoginError({
@@ -66,10 +65,21 @@ const SignIn = () => {
         <InnerFormContainer>
           <ErrorMessage error={loginError || mutationError} />
           <FormDetailsText>
-            Please enter the email and password you used while signing in. If
-            you just want to test out the platform, an email and password for a
-            dummy account is already filled for you. Don't have an account?{' '}
-            <Link href={'/sign-up'}>Sign Up here</Link>
+            {query?.email ? (
+              <>
+                Welcome, {query.name}! Your account was successfully created.
+                You can now sign in below.
+              </>
+            ) : (
+              <>
+                Please enter the email and password you used while signing up.
+                If you just want to test out the platform, an email and password
+                for a dummy account is already filled for you.
+              </>
+            )}
+            <br />
+            <br />
+            Don't have an account? <Link href={'/sign-up'}>Sign Up here</Link>
           </FormDetailsText>
           <StyledForm method={'POST'} onSubmit={handleSubmit}>
             <fieldset>
@@ -82,7 +92,7 @@ const SignIn = () => {
                   id={'email'}
                   placeholder={'Your Email'}
                   onChange={onChangeHandler}
-                  value={inputs.email}
+                  value={query?.email ? query.email : inputs.email}
                   required={true}
                 />
               </div>

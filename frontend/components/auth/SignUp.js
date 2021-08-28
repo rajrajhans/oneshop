@@ -41,7 +41,9 @@ const SignUp = () => {
 
     if (res?.data?.createUser?.email) {
       router
-        .push(`/sign-in?email=${res?.data?.createUser?.email}`)
+        .push(
+          `/sign-in?name=${res?.data?.createUser?.name}&email=${res?.data?.createUser?.email}`,
+        )
         .catch((e) => console.log(e));
     }
   };
