@@ -3,6 +3,8 @@ import { useUser } from '../../utils/useUser';
 import CloseIcon from '../../public/close-icon.svg';
 import { StyledCart } from './StyledCart';
 import { CartItem } from './CartItem';
+import formatPrice from '../../utils/formatPrice';
+import calculateTotalCartPrice from '../../utils/calculateTotalCartPrice';
 
 const Cart = ({ isCartOpen, toggleCart }) => {
   const currentUser = useUser();
@@ -34,6 +36,10 @@ const Cart = ({ isCartOpen, toggleCart }) => {
       {currentUser.cart.length === 0 && (
         <div>Your cart is currently empty!</div>
       )}
+
+      <footer>
+        <p>{formatPrice(calculateTotalCartPrice(currentUser.cart))}</p>
+      </footer>
     </StyledCart>
   );
 };

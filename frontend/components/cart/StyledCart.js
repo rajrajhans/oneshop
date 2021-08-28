@@ -33,11 +33,11 @@ export const StyledCart = styled.div`
   }
 
   footer {
-    border-top: 10px double var(--black);
-    margin-top: 2rem;
-    padding-top: 2rem;
+    border-top: 5px double var(--black);
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
     align-items: center;
-    font-size: 3rem;
+    font-size: 2.3rem;
     font-weight: 900;
     p {
       margin: 0;
