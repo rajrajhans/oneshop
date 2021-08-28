@@ -26,6 +26,8 @@ const Search = () => {
 
   const products = data?.searchTerms || [];
 
+  console.log('products', products);
+
   const debouncedFindItems = debounce(findProducts, 180);
 
   const {
@@ -71,9 +73,9 @@ const Search = () => {
           })}
         />
       </div>
-      <DropDown {...getMenuProps()}>
-        {isOpen &&
-          products.map((product, index) => (
+      {isOpen && (
+        <DropDown {...getMenuProps()}>
+          {products.map((product, index) => (
             <DropDownItem
               key={product.id}
               {...getItemProps({ item: product, index })}
@@ -87,10 +89,11 @@ const Search = () => {
               {product.name}
             </DropDownItem>
           ))}
-        {isOpen && !products.length && !loading && (
-          <DropDownItem>Sorry, no products found.</DropDownItem>
-        )}
-      </DropDown>
+          {isOpen && !products.length && !loading && (
+            <DropDownItem>Sorry, no products found.</DropDownItem>
+          )}
+        </DropDown>
+      )}
     </SearchStyles>
   );
 };
