@@ -12,8 +12,8 @@ export const CartStateProvider = ({ children }) => {
     setCartCount(cartCount + 1);
   };
 
-  const decrementCartCount = () => {
-    setCartCount(cartCount - 1);
+  const decrementCartCount = (decrementBy) => {
+    setCartCount(cartCount - decrementBy);
   };
 
   const openCart = () => {
