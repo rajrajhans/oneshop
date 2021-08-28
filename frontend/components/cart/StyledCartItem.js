@@ -25,3 +25,16 @@ export const StyledCartItem = styled.li`
     color: #4f4f4f;
   }
 `;
+
+export const DeleteFromCartBtn = styled.button`
+  font-size: 2.2rem;
+  background: none;
+  border: 0;
+  margin-left: 8px;
+  margin-right: 5px;
+
+  &:hover {
+    color: var(--dark);
+    cursor: pointer;
+  }
+`;

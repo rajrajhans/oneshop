@@ -5,7 +5,7 @@ export const StyledCart = styled.div`
   background-color: white;
   position: fixed;
   height: 100%;
-  width: 40%;
+  width: 43%;
   min-width: 500px;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
   z-index: 5;

@@ -1,8 +1,23 @@
 import formatPrice from '../../utils/formatPrice';
-import { StyledCartItem } from './StyledCartItem';
+import { DeleteFromCartBtn, StyledCartItem } from './StyledCartItem';
+import useRemoveFromCart from './useRemoveFromCart';
+import { useLoadingContext } from '../LoadingContext';
+import ErrorMessage from '../ErrorMessage';
+import { CartStateContext } from './CartState';
 
 export const CartItem = ({ cartItem }) => {
   const { product } = cartItem;
+  const { deleteCartItem, error } = useRemoveFromCart(cartItem.id);
+  const { toggleIsLoading } = useLoadingContext();
+  const { decrementCartCount } = CartStateContext();
+
+  const handleCartItemDelete = async () => {
+    toggleIsLoading(true);
+    await deleteCartItem();
+    decrementCartCount(cartItem.quantity);
+    toggleIsLoading(false);
+  };
+
   return (
     <StyledCartItem>
       <img
@@ -18,7 +33,11 @@ export const CartItem = ({ cartItem }) => {
             - {cartItem.quantity} &times; {formatPrice(product.price)}
           </em>
         </p>
+        <ErrorMessage error={error} />
       </div>
+      <DeleteFromCartBtn onClick={handleCartItemDelete}>
+        &times;
+      </DeleteFromCartBtn>
     </StyledCartItem>
   );
 };
