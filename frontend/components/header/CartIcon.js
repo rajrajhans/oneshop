@@ -2,9 +2,9 @@ import React from 'react';
 import ShoppingCartIcon from '../../public/assets/shopping-cart-icon.svg';
 import IconWithTooltip from '../IconWithTooltip';
 
-const CartIcon = ({ toggleCart }) => {
+const CartIcon = () => {
   const handleClick = () => {
-    toggleCart(true);
+    //
   };
   return (
     <div onClick={handleClick}>

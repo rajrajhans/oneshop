@@ -6,19 +6,17 @@ import { CartItem } from './CartItem';
 import formatPrice from '../../utils/formatPrice';
 import calculateTotalCartPrice from '../../utils/calculateTotalCartPrice';
 
-const Cart = ({ isCartOpen, toggleCart }) => {
+const Cart = () => {
   const currentUser = useUser();
 
   const closeCart = () => {
-    toggleCart(false);
+    //
   };
 
   if (!currentUser) return null;
 
-  console.log({ currentUser });
-
   return (
-    <StyledCart open={isCartOpen}>
+    <StyledCart>
       <header>
         <h3>{currentUser.name}'s Cart</h3>
         <div onClick={closeCart}>
