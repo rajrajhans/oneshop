@@ -21,6 +21,7 @@ export default async function addToCart(
 
   const allCartItems = await context.lists.CartItem.findMany({
     where: { user: { id: session.itemId }, product: { id: productId } },
+    resolveFields: 'id, quantity',
   });
 
   const [existingCartItem] = allCartItems;
