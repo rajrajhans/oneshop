@@ -175,9 +175,10 @@ const ProductCard = ({ product }) => {
             <EditIcon />
           </ProductButton>
         </Link>
-        <div onClick={handleAddToCartClick}>
-          <ProductButton center={true}>Add To Cart</ProductButton>
-        </div>
+
+        <ProductButton center={true} onClick={handleAddToCartClick}>
+          Add To Cart
+        </ProductButton>
 
         <DeleteProductButton id={product.id}>
           <div className="tooltip">Delete Product</div>
