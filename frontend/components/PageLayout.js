@@ -3,6 +3,8 @@ import Header from './header/Header';
 import styled, { createGlobalStyle } from 'styled-components';
 import Loading from './Loading';
 import { SkeletonTheme } from 'react-loading-skeleton';
+import Cart from './Cart';
+import { useState } from 'react';
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -61,12 +63,19 @@ const InnerStyles = styled.div`
 `;
 
 const PageLayout = ({ children }) => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const toggleCart = (state) => {
+    setIsCartOpen(state);
+  };
+
   return (
     <>
       <GlobalStyles />
       <Loading />
+      <Cart isCartOpen={isCartOpen} />
       <InnerStyles>
-        <Header />
+        <Header toggleCart={toggleCart} />
         <SkeletonTheme color={'#f9f9f9'} highlightColor={'#ededed'}>
           {children}
         </SkeletonTheme>

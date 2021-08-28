@@ -175,7 +175,7 @@ const NavItemsMobile = ({ navItems, closeNavbar, router }) => {
   );
 };
 
-const Nav = () => {
+const Nav = ({ toggleCart }) => {
   const { showNavLinks, animation, toggleNavbar } = useAnimatedNavToggler();
   const router = useRouter();
   const user = useUser();
@@ -198,7 +198,7 @@ const Nav = () => {
 
       {user && (
         <RightIcons>
-          <CartIcon />
+          <CartIcon toggleCart={toggleCart} />
           <SignOut />
         </RightIcons>
       )}

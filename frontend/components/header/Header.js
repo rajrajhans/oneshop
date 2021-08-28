@@ -9,11 +9,11 @@ const HeaderContainer = styled.div`
   padding: 30px 0;
 `;
 
-const Header = () => {
+const Header = ({ toggleCart }) => {
   return (
     <HeaderContainer>
       <Logo />
-      <Nav />
+      <Nav toggleCart={toggleCart} />
     </HeaderContainer>
   );
 };
