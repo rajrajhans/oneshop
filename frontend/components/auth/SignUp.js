@@ -4,7 +4,6 @@ import StyledForm from '../StyledForm';
 import { FormContainer, InnerFormContainer } from '../../pages/sell';
 import CardBg from '../CardBg';
 import PageInfoBar from '../PageInfoBar';
-import styled from 'styled-components';
 import Link from 'next/link';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
@@ -12,24 +11,18 @@ import ErrorMessage from '../ErrorMessage';
 import { useLoadingContext } from '../LoadingContext';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { FormDetailsText } from './SignIn';
 
-export const FormDetailsText = styled.div`
-  margin-bottom: 40px;
-  font-size: 1.1rem;
-  font-weight: 400;
-  text-align: justify;
-`;
-
-const SignIn = () => {
+const SignUp = () => {
   const [inputs, onChangeHandler, resetForm] = useForm();
-  const [loginError, setLoginError] = useState(null);
-  const [signIn, { data, mutationError, loading }] = useMutation(
-    SIGNIN_MUTATION,
+
+  const [signUp, { data, mutationError, loading }] = useMutation(
+    SIGNUP_MUTATION,
     {
       variables: inputs,
-      refetchQueries: ['CURRENT_USER_QUERY'],
     },
   );
+
   const { toggleIsLoading } = useLoadingContext();
   const router = useRouter();
 
@@ -39,17 +32,12 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoginError(null);
-    resetForm();
-    const res = await signIn();
-    console.log(res?.data?.authenticateUserWithPassword?.code);
 
-    if (res?.data?.authenticateUserWithPassword?.code === 'FAILURE') {
-      setLoginError({
-        message: 'Login Failed. Please try again.',
-      });
-    } else {
-      router.push('/shop').catch((e) => console.log(e));
+    resetForm();
+    const res = await signUp();
+
+    if (res?.data?.createUser?.email) {
+      router.push('/sign-in').catch((e) => console.log(e));
     }
   };
 
@@ -58,20 +46,34 @@ const SignIn = () => {
       <CardBg />
       <PageInfoBar
         leftText={null}
-        middleText={'Sign In'}
+        middleText={'Sign Up'}
         rightComponent={null}
       />
       <FormContainer>
         <InnerFormContainer>
-          <ErrorMessage error={loginError || mutationError} />
+          <ErrorMessage error={mutationError} />
           <FormDetailsText>
-            Please enter the email and password you used while signing in. If
-            you just want to test out the platform, an email and password for a
-            dummy account is already filled for you. Don't have an account?{' '}
-            <Link href={'/sign-up'}>Sign Up here</Link>
+            Please fill the form below to sign up for a oneshop account.
+            <br />
+            Already have an account? <Link href={'/sign-in'}>Sign In here</Link>
           </FormDetailsText>
+
           <StyledForm method={'POST'} onSubmit={handleSubmit}>
             <fieldset>
+              <div className="form-input">
+                <label htmlFor={'name'}>Name</label>
+                <input
+                  type={'name'}
+                  autoComplete={'name'}
+                  name={'name'}
+                  id={'name'}
+                  placeholder={'Your Name'}
+                  onChange={onChangeHandler}
+                  value={inputs.name}
+                  required={true}
+                />
+              </div>
+
               <div className="form-input">
                 <label htmlFor={'email'}>Email</label>
                 <input
@@ -100,7 +102,7 @@ const SignIn = () => {
                 />
               </div>
 
-              <input type={'submit'} value={'Sign In'} />
+              <input type={'submit'} value={'Sign Up'} />
             </fieldset>
           </StyledForm>
         </InnerFormContainer>
@@ -109,22 +111,18 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
 
-const SIGNIN_MUTATION = gql`
-  mutation SIGNIN_MUTATION($email: String!, $password: String!) {
-    authenticateUserWithPassword(email: $email, password: $password) {
-      ... on UserAuthenticationWithPasswordSuccess {
-        item {
-          id
-          email
-          name
-        }
-      }
-      ... on UserAuthenticationWithPasswordFailure {
-        code
-        message
-      }
+const SIGNUP_MUTATION = gql`
+  mutation SIGNUP_MUTATION(
+    $name: String!
+    $email: String!
+    $password: String!
+  ) {
+    createUser(data: { name: $name, email: $email, password: $password }) {
+      id
+      name
+      email
     }
   }
 `;
