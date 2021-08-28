@@ -5,6 +5,7 @@ import { resetIdCounter, useCombobox } from 'downshift';
 import gql from 'graphql-tag';
 import { useLazyQuery } from '@apollo/client';
 import debounce from 'lodash.debounce';
+import { useRouter } from 'next/router';
 
 const StyledSearchInput = styled.input`
   background: rgba(255, 234, 190, 0.7);
@@ -15,6 +16,7 @@ const StyledSearchInput = styled.input`
 `;
 
 const Search = () => {
+  const router = useRouter();
   const [findProducts, { data, loading }] = useLazyQuery(
     SEARCH_PRODUCTS_QUERY,
     {
@@ -26,20 +28,29 @@ const Search = () => {
 
   const debouncedFindItems = debounce(findProducts, 180);
 
-  const { inputValue, getMenuProps, getInputProps, getComboboxProps } =
-    useCombobox({
-      items: [],
-      onInputValueChange() {
-        debouncedFindItems({
-          variables: {
-            searchTerm: inputValue,
-          },
-        });
-      },
-      onSelectedItemChange() {
-        console.log('item');
-      },
-    });
+  const {
+    inputValue,
+    getMenuProps,
+    getInputProps,
+    getComboboxProps,
+    getItemProps,
+    highlightedIndex,
+  } = useCombobox({
+    items: products,
+    onInputValueChange() {
+      debouncedFindItems({
+        variables: {
+          searchTerm: inputValue,
+        },
+      });
+    },
+    onSelectedItemChange({ selectedItem }) {
+      router.push({
+        pathname: `/product/${selectedItem.id}`,
+      });
+    },
+    itemToString: (item) => item?.name || '',
+  });
 
   resetIdCounter();
 
@@ -51,13 +62,24 @@ const Search = () => {
             type: 'search',
             placeholder: '🔎 Search Products',
             id: 'search',
-            className: loading ? 'loading' : '',
+            className: loading ? 'loading' : null,
           })}
         />
       </div>
       <DropDown {...getMenuProps()}>
-        {products.map((product) => (
-          <DropDownItem>{product.name}</DropDownItem>
+        {products.map((product, index) => (
+          <DropDownItem
+            key={product.id}
+            {...getItemProps({ item: product, index })}
+            highlighted={index === highlightedIndex}
+          >
+            <img
+              src={product.photo.image.publicUrlTransformed}
+              alt={product.name}
+              width={'50'}
+            />
+            {product.name}
+          </DropDownItem>
         ))}
       </DropDown>
     </SearchStyles>

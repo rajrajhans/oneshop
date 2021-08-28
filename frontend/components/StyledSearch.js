@@ -22,6 +22,7 @@ const DropDownItem = styled.div`
   border-left: 10px solid
     ${(props) => (props.highlighted ? props.theme.lightgrey : 'var(--light)')};
   border-radius: 20px;
+  ${(props) => (props.highlighted ? 'border-radius: 0;' : null)};
   img {
     margin-right: 10px;
   }
