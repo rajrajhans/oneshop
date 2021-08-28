@@ -33,7 +33,7 @@ const useForm = (initialState = {}) => {
     setInputState(blankState);
   };
 
-  return [inputState, handleChange, resetForm, clearForm];
+  return [inputState, handleChange, clearForm, resetForm];
 };
 
 export default useForm;

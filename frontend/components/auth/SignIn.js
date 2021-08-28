@@ -32,6 +32,7 @@ const SignIn = () => {
   );
   const { toggleIsLoading } = useLoadingContext();
   const router = useRouter();
+  console.log('router', router);
 
   useEffect(() => {
     loading ? toggleIsLoading(true) : toggleIsLoading(false);

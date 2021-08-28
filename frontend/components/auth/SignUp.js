@@ -15,7 +15,7 @@ import { FormDetailsText } from './SignIn';
 
 const SignUp = () => {
   const [inputs, onChangeHandler, resetForm] = useForm();
-
+  const [signUpError, setSignUpError] = useState(null);
   const [signUp, { data, mutationError, loading }] = useMutation(
     SIGNUP_MUTATION,
     {
@@ -34,10 +34,15 @@ const SignUp = () => {
     e.preventDefault();
 
     resetForm();
-    const res = await signUp();
+    setSignUpError(null);
+    const res = await signUp().catch((e) => {
+      setSignUpError(e);
+    });
 
     if (res?.data?.createUser?.email) {
-      router.push('/sign-in').catch((e) => console.log(e));
+      router
+        .push(`/sign-in?email=${res?.data?.createUser?.email}`)
+        .catch((e) => console.log(e));
     }
   };
 
@@ -51,7 +56,7 @@ const SignUp = () => {
       />
       <FormContainer>
         <InnerFormContainer>
-          <ErrorMessage error={mutationError} />
+          <ErrorMessage error={mutationError || signUpError} />
           <FormDetailsText>
             Please fill the form below to sign up for a oneshop account.
             <br />
