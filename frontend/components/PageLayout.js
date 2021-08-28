@@ -3,7 +3,7 @@ import Header from './header/Header';
 import styled, { createGlobalStyle } from 'styled-components';
 import Loading from './Loading';
 import { SkeletonTheme } from 'react-loading-skeleton';
-import Cart from './Cart';
+import Cart from './cart/Cart';
 import { useState } from 'react';
 
 const GlobalStyles = createGlobalStyle`
@@ -73,7 +73,7 @@ const PageLayout = ({ children }) => {
     <>
       <GlobalStyles />
       <Loading />
-      <Cart isCartOpen={isCartOpen} />
+      <Cart isCartOpen={isCartOpen} toggleCart={toggleCart} />
       <InnerStyles>
         <Header toggleCart={toggleCart} />
         <SkeletonTheme color={'#f9f9f9'} highlightColor={'#ededed'}>

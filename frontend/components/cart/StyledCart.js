@@ -1,8 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
-import { useUser } from '../utils/useUser';
 
-const StyledCart = styled.div`
+export const StyledCart = styled.div`
   padding: 20px;
   background-color: white;
   position: fixed;
@@ -24,9 +22,14 @@ const StyledCart = styled.div`
   ${(props) => props.open && 'transform: translateX(0);'}
 
   header {
-    border-bottom: 5px solid var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--black);
     margin-bottom: 2rem;
-    padding-bottom: 2rem;
+    svg {
+      cursor: pointer;
+    }
   }
 
   footer {
@@ -48,27 +51,3 @@ const StyledCart = styled.div`
     overflow: scroll;
   }
 `;
-
-const Cart = ({ isCartOpen }) => {
-  const currentUser = useUser();
-
-  if (!currentUser) return null;
-
-  return (
-    <StyledCart open={isCartOpen}>
-      <header>
-        <h4>{currentUser.name}'s Cart</h4>
-      </header>
-
-      <ul>
-        {currentUser.cart.map((cartItem) => (
-          <CartItem key={cartItem.id} item={cartItem} />
-        ))}
-      </ul>
-    </StyledCart>
-  );
-};
-
-const CartItem = () => <div>x</div>;
-
-export default Cart;
