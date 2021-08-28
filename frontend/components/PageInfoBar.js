@@ -33,14 +33,12 @@ const StyledLeft = styled.div`
   }
 `;
 
-const PageInfoBar = ({ leftText, middleText, rightComponent }) => {
+const PageInfoBar = ({ leftText, middleText, RightComponent }) => {
   return (
     <Container>
       <StyledLeft>{leftText}</StyledLeft>
       <StyledMiddle>{middleText}</StyledMiddle>
-      <div>
-        <rightComponent />
-      </div>
+      <div>{RightComponent}</div>
     </Container>
   );
 };

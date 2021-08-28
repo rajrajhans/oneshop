@@ -10,6 +10,7 @@ import Pagination from '../../components/Pagination';
 import { useRouter } from 'next/router';
 import { ProductsPerPage } from '../../config';
 import ErrorMessage from '../../components/ErrorMessage';
+import Search from '../../components/Search';
 
 const StyledVerticalText = styled.div`
   writing-mode: vertical-lr;
@@ -53,7 +54,7 @@ const ShopTopSection = () => (
     <PageInfoBar
       leftText={'All Products'}
       middleText={'Shop'}
-      rightComponent={null}
+      RightComponent={<Search />}
     />
     <StyledVerticalText>Scroll down for more</StyledVerticalText>
   </StyledPageDecorationContainer>

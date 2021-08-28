@@ -34,6 +34,8 @@ export const StyledCart = styled.div`
 
   footer {
     border-top: 5px double var(--black);
+    display: flex;
+    justify-content: space-between;
     margin-top: 1.2rem;
     padding-top: 1.2rem;
     align-items: center;
