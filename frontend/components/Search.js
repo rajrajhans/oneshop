@@ -29,6 +29,7 @@ const Search = () => {
   const debouncedFindItems = debounce(findProducts, 180);
 
   const {
+    isOpen,
     inputValue,
     getMenuProps,
     getInputProps,
@@ -67,20 +68,24 @@ const Search = () => {
         />
       </div>
       <DropDown {...getMenuProps()}>
-        {products.map((product, index) => (
-          <DropDownItem
-            key={product.id}
-            {...getItemProps({ item: product, index })}
-            highlighted={index === highlightedIndex}
-          >
-            <img
-              src={product.photo.image.publicUrlTransformed}
-              alt={product.name}
-              width={'50'}
-            />
-            {product.name}
-          </DropDownItem>
-        ))}
+        {isOpen &&
+          products.map((product, index) => (
+            <DropDownItem
+              key={product.id}
+              {...getItemProps({ item: product, index })}
+              highlighted={index === highlightedIndex}
+            >
+              <img
+                src={product.photo.image.publicUrlTransformed}
+                alt={product.name}
+                width={'50'}
+              />
+              {product.name}
+            </DropDownItem>
+          ))}
+        {isOpen && !products.length && !loading && (
+          <DropDownItem>Sorry, no products found.</DropDownItem>
+        )}
       </DropDown>
     </SearchStyles>
   );
