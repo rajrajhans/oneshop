@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 
 const useForm = (initialState = {}) => {
   const [inputState, setInputState] = useState(initialState);
+  const initialValues = Object.values(initialState).join('');
 
   useEffect(() => {
     setInputState(initialState);
-  }, [initialState]);
+  }, [initialValues]);
 
   const handleChange = (e) => {
     let { value, name, type } = e.target;
@@ -32,7 +33,7 @@ const useForm = (initialState = {}) => {
     setInputState(blankState);
   };
 
-  return [inputState, handleChange, resetForm, clearForm];
+  return [inputState, handleChange, clearForm, resetForm];
 };
 
 export default useForm;

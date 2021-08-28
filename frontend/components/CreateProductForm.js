@@ -7,7 +7,7 @@ import gql from 'graphql-tag';
 import ErrorMessage from './ErrorMessage';
 import { useLoadingContext } from './LoadingContext';
 import { ALL_PRODUCTS_QUERY } from '../pages/shop';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 const CreateProductDetails = styled.div`
   margin-bottom: 40px;
@@ -20,6 +20,7 @@ const CreateProductForm = () => {
   const initialState = { name: '', price: '', description: '', image: '' };
   const [inputs, handleChange, resetForm] = useForm(initialState);
   const { toggleIsLoading } = useLoadingContext();
+  const router = useRouter();
 
   const [createProduct, { data, error, loading }] = useMutation(
     CREATE_PRODUCT_MUTATION,
@@ -37,11 +38,11 @@ const CreateProductForm = () => {
     e.preventDefault();
     const res = await createProduct();
     resetForm();
-    Router.push({ pathname: `/product/${res.data.createProduct.id}` }).catch(
-      (e) => {
+    router
+      .push({ pathname: `/product/${res.data.createProduct.id}` })
+      .catch((e) => {
         console.log(e);
-      },
-    );
+      });
   };
 
   return (
