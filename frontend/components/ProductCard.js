@@ -139,13 +139,14 @@ const ProductCard = ({ product }) => {
   const router = useRouter();
   const { addToCart, error } = useAddToCart(product.id);
   const { toggleIsLoading } = useLoadingContext();
-  const { incrementCartCount } = CartStateContext();
+  const { incrementCartCount, openCart } = CartStateContext();
 
   const handleAddToCartClick = async () => {
     toggleIsLoading(true);
     incrementCartCount();
     await addToCart();
     toggleIsLoading(false);
+    openCart();
   };
 
   return (

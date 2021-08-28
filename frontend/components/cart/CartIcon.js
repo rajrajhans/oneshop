@@ -10,9 +10,14 @@ const CartIconContainer = styled.div`
 
 const CartCount = styled.div`
   position: absolute;
-  top: 0;
-  right: -6px;
-  font-size: 15px;
+  top: -10px;
+  right: -15px;
+  font-size: 13px;
+  background-color: var(--dark);
+  color: white;
+  padding: 6px;
+  border-radius: 50%;
+  font-weight: 700;
 `;
 
 const CartIcon = () => {
@@ -30,6 +35,7 @@ const CartIcon = () => {
         arrowDirection={'top'}
         arrowBottom={'100%'}
         arrowLeft={'100px'}
+        className={'IconWithTooltip'}
       >
         <div className="tooltip">Your Cart</div>
 
