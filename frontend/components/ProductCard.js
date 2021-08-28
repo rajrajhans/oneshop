@@ -6,6 +6,9 @@ import Link from 'next/link';
 import EditIcon from '../public/assets/edit-icon.svg';
 import TrashIcon from '../public/assets/trash-icon.svg';
 import DeleteProductButton from './DeleteProduct';
+import useCart from './cart/useCart';
+import { useLoadingContext } from './LoadingContext';
+import ErrorMessage from './ErrorMessage';
 
 export const ProductWrapper = styled.div`
   background: white;
@@ -133,6 +136,14 @@ export const ProductButton = styled.button`
 
 const ProductCard = ({ product }) => {
   const router = useRouter();
+  const { addToCart, error, loading } = useCart(product.id);
+  const { toggleIsLoading } = useLoadingContext();
+
+  const handleAddToCartClick = async () => {
+    toggleIsLoading(true);
+    await addToCart();
+    toggleIsLoading(false);
+  };
 
   return (
     <ProductWrapper>
@@ -164,15 +175,16 @@ const ProductCard = ({ product }) => {
             <EditIcon />
           </ProductButton>
         </Link>
-        <Link href={{ pathname: 'update', query: { id: product.id } }}>
+        <div onClick={handleAddToCartClick}>
           <ProductButton center={true}>Add To Cart</ProductButton>
-        </Link>
+        </div>
 
         <DeleteProductButton id={product.id}>
           <div className="tooltip">Delete Product</div>
           <TrashIcon />
         </DeleteProductButton>
       </ButtonsBar>
+      <ErrorMessage error={error} />
     </ProductWrapper>
   );
 };
