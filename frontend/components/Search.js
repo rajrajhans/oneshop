@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { DropDown, DropDownItem, SearchStyles } from './StyledSearch';
+import { resetIdCounter, useCombobox } from 'downshift';
 
 const StyledSearchInput = styled.input`
   background: rgba(255, 234, 190, 0.7);
@@ -11,12 +12,30 @@ const StyledSearchInput = styled.input`
 `;
 
 const Search = () => {
+  resetIdCounter();
+  const { getMenuProps, getInputProps, getComboboxProps } = useCombobox({
+    items: [],
+    onInputValueChange() {
+      console.log('changed');
+    },
+    onSelectedItemChange() {
+      console.log('item');
+    },
+  });
+
   return (
     <SearchStyles>
-      <div>
-        <StyledSearchInput type={'search'} placeholder={'Search'} />
+      <div {...getComboboxProps()}>
+        <StyledSearchInput
+          {...getInputProps({
+            type: 'search',
+            placeholder: 'Search Products',
+            id: 'search',
+            className: 'loading',
+          })}
+        />
       </div>
-      <DropDown>
+      <DropDown {...getMenuProps()}>
         <DropDownItem>etjg</DropDownItem>
         <DropDownItem>etjg</DropDownItem>
         <DropDownItem>etjg</DropDownItem>
