@@ -8,6 +8,7 @@ import Cart from './Cart';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useUser } from '../../utils/useUser';
+import SignOut from '../auth/SignOut';
 
 const navItemsForAllUsers = [
   {
@@ -130,6 +131,11 @@ const HighlightedText = styled.span`
   color: var(--accent);
 `;
 
+const RightIcons = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const NavItem = ({ navItem, router }) => (
   <NavItemContainer>
     <Link href={navItem.route}>
@@ -190,7 +196,12 @@ const Nav = () => {
             ))}
       </NavContainer>
 
-      <Cart />
+      {user && (
+        <RightIcons>
+          <Cart />
+          <SignOut />
+        </RightIcons>
+      )}
 
       <NavToggler
         onClick={toggleNavbar}
