@@ -9,6 +9,7 @@ import {
 import { Product } from './schamas/Product';
 import { ProductImage } from './schamas/ProductImage';
 import { insertDemoData } from './demo-data';
+import { CartItem } from './schamas/CartItem';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-oneshop';
@@ -51,6 +52,7 @@ export default withAuth(
       User,
       Product,
       ProductImage,
+      CartItem,
     }),
     ui: {
       isAccessAllowed: ({ session }) => session?.data,
