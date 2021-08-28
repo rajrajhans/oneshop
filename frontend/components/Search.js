@@ -46,9 +46,13 @@ const Search = () => {
       });
     },
     onSelectedItemChange({ selectedItem }) {
-      router.push({
-        pathname: `/product/${selectedItem.id}`,
-      });
+      router
+        .push({
+          pathname: `/product/${selectedItem.id}`,
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     itemToString: (item) => item?.name || '',
   });

@@ -23,8 +23,13 @@ const DropDownItem = styled.div`
     ${(props) => (props.highlighted ? props.theme.lightgrey : 'var(--light)')};
   border-radius: 20px;
   ${(props) => (props.highlighted ? 'border-radius: 0;' : null)};
+
   img {
     margin-right: 10px;
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 `;
 
