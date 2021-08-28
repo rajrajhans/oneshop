@@ -11,13 +11,17 @@ const CartIconContainer = styled.div`
 const CartCount = styled.div`
   position: absolute;
   top: -10px;
-  right: -15px;
+  right: -12px;
   font-size: 13px;
   background-color: var(--dark);
   color: white;
   padding: 6px;
-  border-radius: 50%;
+  border-radius: 100%;
   font-weight: 700;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const CartIcon = () => {
