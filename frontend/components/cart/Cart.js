@@ -6,6 +6,7 @@ import { CartItem } from './CartItem';
 import formatPrice from '../../utils/formatPrice';
 import calculateTotalCartPrice from '../../utils/calculateTotalCartPrice';
 import { CartStateContext } from './CartState';
+import Checkout from '../Checkout';
 
 const Cart = () => {
   const currentUser = useUser();
@@ -35,6 +36,7 @@ const Cart = () => {
 
       <footer>
         <p>{formatPrice(calculateTotalCartPrice(currentUser.cart))}</p>
+        <Checkout />
       </footer>
     </StyledCart>
   );
