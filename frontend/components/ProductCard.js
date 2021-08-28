@@ -9,6 +9,7 @@ import DeleteProductButton from './DeleteProduct';
 import useAddToCart from './cart/useAddToCart';
 import { useLoadingContext } from './LoadingContext';
 import ErrorMessage from './ErrorMessage';
+import { CartStateContext } from './cart/CartState';
 
 export const ProductWrapper = styled.div`
   background: white;
@@ -138,9 +139,11 @@ const ProductCard = ({ product }) => {
   const router = useRouter();
   const { addToCart, error } = useAddToCart(product.id);
   const { toggleIsLoading } = useLoadingContext();
+  const { incrementCartCount } = CartStateContext();
 
   const handleAddToCartClick = async () => {
     toggleIsLoading(true);
+    incrementCartCount();
     await addToCart();
     toggleIsLoading(false);
   };
