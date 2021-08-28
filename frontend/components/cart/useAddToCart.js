@@ -7,6 +7,7 @@ export default function useAddToCart(productId) {
       id: productId,
     },
     refetchQueries: ['CURRENT_USER_QUERY'],
+    awaitRefetchQueries: true,
   });
 
   return { addToCart, loading, error };

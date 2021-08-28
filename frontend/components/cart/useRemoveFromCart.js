@@ -10,7 +10,8 @@ export default function useRemoveFromCart(id) {
     variables: {
       id: id,
     },
-    update,
+    refetchQueries: ['CURRENT_USER_QUERY'],
+    awaitRefetchQueries: true,
   });
 
   return { deleteCartItem, error, loading };
