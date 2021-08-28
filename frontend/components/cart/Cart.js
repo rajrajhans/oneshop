@@ -5,18 +5,16 @@ import { StyledCart } from './StyledCart';
 import { CartItem } from './CartItem';
 import formatPrice from '../../utils/formatPrice';
 import calculateTotalCartPrice from '../../utils/calculateTotalCartPrice';
+import { CartStateContext } from './CartState';
 
 const Cart = () => {
   const currentUser = useUser();
-
-  const closeCart = () => {
-    //
-  };
+  const { isCartOpen, closeCart } = CartStateContext();
 
   if (!currentUser) return null;
 
   return (
-    <StyledCart>
+    <StyledCart open={isCartOpen}>
       <header>
         <h3>{currentUser.name}'s Cart</h3>
         <div onClick={closeCart}>

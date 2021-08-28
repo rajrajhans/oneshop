@@ -1,11 +1,15 @@
 import React from 'react';
 import ShoppingCartIcon from '../../public/assets/shopping-cart-icon.svg';
 import IconWithTooltip from '../IconWithTooltip';
+import { CartStateContext } from '../cart/CartState';
 
 const CartIcon = () => {
+  const { openCart } = CartStateContext();
+
   const handleClick = () => {
-    //
+    openCart();
   };
+
   return (
     <div onClick={handleClick}>
       <IconWithTooltip

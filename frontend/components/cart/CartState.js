@@ -6,11 +6,11 @@ export const CartStateProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const openCart = () => {
-    setIsCartOpen(false);
+    setIsCartOpen(true);
   };
 
   const closeCart = () => {
-    setIsCartOpen(true);
+    setIsCartOpen(false);
   };
 
   return (
