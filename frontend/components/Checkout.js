@@ -10,6 +10,10 @@ import {
 import { ProductButton } from './ProductCard';
 import { useLoadingContext } from './LoadingContext';
 import nProgress from 'nprogress';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/client';
+import { useRouter } from 'next/router';
+import { CartStateContext } from './cart/CartState';
 
 const CheckoutFormStyles = styled.form`
   box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.04);
@@ -44,6 +48,11 @@ const Checkout = () => {
   const [error, setError] = useState('');
   const stripe = useStripe();
   const elements = useElements();
+  const [checkout, { error: gqlError }] = useMutation(CREATE_ORDER_MUTATION, {
+    refetchQueries: [{ query: ['CURRENT_USER_QUERY'] }],
+  });
+  const router = useRouter();
+  const { closeCart } = CartStateContext();
 
   const handleSubmit = async (e) => {
     // 1. start showing loading indicator & start page transition
@@ -62,13 +71,35 @@ const Checkout = () => {
     });
     if (error) {
       setError(error);
+      toggleIsLoading(false);
+      nProgress.done();
+      return;
     }
+
+    const order = await checkout({
+      variables: { token: paymentMethod.id },
+    });
+
+    nProgress.done();
+
+    router
+      .push({
+        pathname: '/order/[id]',
+        query: { id: order.data.checkout.id },
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    closeCart();
+
     toggleIsLoading(false);
   };
 
   return (
     <CheckoutFormStyles onSubmit={handleSubmit}>
       {error && <p style={{ fontSize: 12 }}>{error.message}</p>}
+      {gqlError && <p style={{ fontSize: 12 }}>{error.message}</p>}
       <CardElement />
       <ProductButton type={'submit'}>Check Out</ProductButton>
     </CheckoutFormStyles>
@@ -76,3 +107,17 @@ const Checkout = () => {
 };
 
 export default CheckoutContainer;
+
+const CREATE_ORDER_MUTATION = gql`
+  mutation CREATE_ORDER_MUTATION($token: String!) {
+    checkout(token: $token) {
+      id
+      charge
+      total
+      items {
+        id
+        name
+      }
+    }
+  }
+`;
