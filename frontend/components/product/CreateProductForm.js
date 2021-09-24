@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import useForm from '../utils/useForm';
+import useForm from '../../utils/useForm';
 import styled from 'styled-components';
-import StyledForm from './StyledForm';
+import StyledForm from '../helpers/StyledForm';
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
-import ErrorMessage from './ErrorMessage';
-import { useLoadingContext } from './LoadingContext';
-import { ALL_PRODUCTS_QUERY } from '../pages/shop';
+import ErrorMessage from '../helpers/ErrorMessage';
+import { useLoadingContext } from '../helpers/LoadingContext';
+import { ALL_PRODUCTS_QUERY } from '../../pages/shop';
 import { useRouter } from 'next/router';
 
 const CreateProductDetails = styled.div`

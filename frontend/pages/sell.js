@@ -1,7 +1,7 @@
 import React from 'react';
-import CreateProductForm from '../components/CreateProductForm';
-import CardBg from '../components/CardBg';
-import PageInfoBar from '../components/PageInfoBar';
+import CreateProductForm from '../components/product/CreateProductForm';
+import CardBg from '../components/helpers/CardBg';
+import PageInfoBar from '../components/helpers/PageInfoBar';
 import styled from 'styled-components';
 
 export const FormContainer = styled.div`

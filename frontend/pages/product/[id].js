@@ -1,5 +1,5 @@
 import React from 'react';
-import SingleProduct from '../../components/SingleProduct';
+import SingleProduct from '../../components/product/SingleProduct';
 import { useRouter } from 'next/router';
 
 const ProductPage = () => {

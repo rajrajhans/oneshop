@@ -1,12 +1,12 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
-import ErrorMessage from './ErrorMessage';
+import ErrorMessage from '../helpers/ErrorMessage';
 import Head from 'next/head';
-import CardBg from './CardBg';
-import PageInfoBar from './PageInfoBar';
+import CardBg from '../helpers/CardBg';
+import PageInfoBar from '../helpers/PageInfoBar';
 import styled from 'styled-components';
-import formatPrice from '../utils/formatPrice';
+import formatPrice from '../../utils/formatPrice';
 import SingleProductSkeleton from './SingleProductSkeleton';
 
 export const ProductDetailsContainer = styled.div`

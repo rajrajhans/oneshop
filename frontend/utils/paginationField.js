@@ -1,4 +1,4 @@
-import { COUNT_NUM_OF_PRODUCTS } from '../components/Pagination';
+import { COUNT_NUM_OF_PRODUCTS } from '../components/helpers/Pagination';
 
 /*
  * the order of methods called by apollo

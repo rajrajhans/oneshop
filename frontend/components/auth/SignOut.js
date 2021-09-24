@@ -1,6 +1,6 @@
 import React from 'react';
 import SignOutIcon from '../../public/assets/log-out-icon.svg';
-import IconWithTooltip from '../IconWithTooltip';
+import IconWithTooltip from '../helpers/IconWithTooltip';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';

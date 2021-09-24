@@ -34,15 +34,13 @@ export const StyledCart = styled.div`
 
   footer {
     border-top: 5px double var(--black);
-    display: flex;
-    justify-content: space-between;
     margin-top: 1.2rem;
     padding-top: 1.2rem;
     align-items: center;
     font-size: 2.3rem;
     font-weight: 900;
     p {
-      margin: 0;
+      margin: 0 10px 0 0;
     }
   }
 

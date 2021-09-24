@@ -3,10 +3,10 @@ import { useRouter } from 'next/router';
 import gql from 'graphql-tag';
 import { useMutation, useQuery } from '@apollo/client';
 import { SINGLE_PRODUCT_QUERY } from './SingleProduct';
-import useForm from '../utils/useForm';
-import { useLoadingContext } from './LoadingContext';
-import StyledForm from './StyledForm';
-import ErrorMessage from './ErrorMessage';
+import useForm from '../../utils/useForm';
+import { useLoadingContext } from '../helpers/LoadingContext';
+import StyledForm from '../helpers/StyledForm';
+import ErrorMessage from '../helpers/ErrorMessage';
 import Skeleton from 'react-loading-skeleton';
 
 const UpdateProduct = () => {

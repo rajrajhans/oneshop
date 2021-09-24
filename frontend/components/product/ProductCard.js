@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import formatPrice from '../utils/formatPrice';
+import formatPrice from '../../utils/formatPrice';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import EditIcon from '../public/assets/edit-icon.svg';
-import TrashIcon from '../public/assets/trash-icon.svg';
+import EditIcon from '../../public/assets/edit-icon.svg';
+import TrashIcon from '../../public/assets/trash-icon.svg';
 import DeleteProductButton from './DeleteProduct';
-import useAddToCart from './cart/useAddToCart';
-import { useLoadingContext } from './LoadingContext';
-import ErrorMessage from './ErrorMessage';
-import { CartStateContext } from './cart/CartState';
+import useAddToCart from '../cart/useAddToCart';
+import { useLoadingContext } from '../helpers/LoadingContext';
+import ErrorMessage from '../helpers/ErrorMessage';
+import { CartStateContext } from '../cart/CartState';
 
 export const ProductWrapper = styled.div`
   background: white;

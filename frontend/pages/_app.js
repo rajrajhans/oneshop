@@ -2,10 +2,10 @@ import React from 'react';
 import NProgress from 'nprogress';
 import '../styles/nprogress.css';
 import Router from 'next/router';
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../components/helpers/PageLayout';
 import { ApolloProvider } from '@apollo/client';
 import withApolloClientConfig from '../utils/withApolloClientConfig';
-import { LoadingProvider } from '../components/LoadingContext';
+import { LoadingProvider } from '../components/helpers/LoadingContext';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
