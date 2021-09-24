@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Blob1 from '../public/assets/blob-1.svg';
-import Blob2 from '../public/assets/blob-2.svg';
+import Blob1 from '../../public/assets/blob-1.svg';
+import Blob2 from '../../public/assets/blob-2.svg';
 
 const CardContainer = styled.div`
   display: flex;

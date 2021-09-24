@@ -1,7 +1,7 @@
 import React from 'react';
-import UpdateProductForm from '../components/UpdateProductForm';
-import CardBg from '../components/CardBg';
-import PageInfoBar from '../components/PageInfoBar';
+import UpdateProductForm from '../components/product/UpdateProductForm';
+import CardBg from '../components/helpers/CardBg';
+import PageInfoBar from '../components/helpers/PageInfoBar';
 import { FormContainer, InnerFormContainer } from './sell';
 import styled from 'styled-components';
 

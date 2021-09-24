@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from './header/Header';
+import Header from '../header/Header';
 import styled, { createGlobalStyle } from 'styled-components';
 import Loading from './Loading';
 import { SkeletonTheme } from 'react-loading-skeleton';
-import Cart from './cart/Cart';
-import { CartStateProvider } from './cart/CartState';
+import Cart from '../cart/Cart';
+import { CartStateProvider } from '../cart/CartState';
 
 const GlobalStyles = createGlobalStyle`
   html {

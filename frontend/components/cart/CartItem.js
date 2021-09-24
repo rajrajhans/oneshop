@@ -1,8 +1,8 @@
 import formatPrice from '../../utils/formatPrice';
 import { DeleteFromCartBtn, StyledCartItem } from './StyledCartItem';
 import useRemoveFromCart from './useRemoveFromCart';
-import { useLoadingContext } from '../LoadingContext';
-import ErrorMessage from '../ErrorMessage';
+import { useLoadingContext } from '../helpers/LoadingContext';
+import ErrorMessage from '../helpers/ErrorMessage';
 import { CartStateContext } from './CartState';
 
 export const CartItem = ({ cartItem }) => {

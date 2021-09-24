@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
-import CardBg from './CardBg';
-import PageInfoBar from './PageInfoBar';
+import CardBg from '../helpers/CardBg';
+import PageInfoBar from '../helpers/PageInfoBar';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 import {

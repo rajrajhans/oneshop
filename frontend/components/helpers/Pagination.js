@@ -5,7 +5,7 @@ import Link from 'next/link';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 import ErrorMessage from './ErrorMessage';
-import { ProductsPerPage } from '../config';
+import { ProductsPerPage } from '../../config';
 
 const PaginationStyles = styled.div`
   text-align: center;

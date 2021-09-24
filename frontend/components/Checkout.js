@@ -7,8 +7,8 @@ import {
   useElements,
   useStripe,
 } from '@stripe/react-stripe-js';
-import { ProductButton } from './ProductCard';
-import { useLoadingContext } from './LoadingContext';
+import { ProductButton } from './product/ProductCard';
+import { useLoadingContext } from './helpers/LoadingContext';
 import nProgress from 'nprogress';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';

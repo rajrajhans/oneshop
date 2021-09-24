@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLoadingContext } from './LoadingContext';
-import LogoShape from './header/LogoShape';
+import LogoShape from '../header/LogoShape';
 import styled from 'styled-components';
 
 const LoadingContainer = styled.div`
