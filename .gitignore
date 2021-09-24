@@ -92,3 +92,4 @@ node_modules/
 */.keystone/
 */.env/
 backend/.env
+frontend/.env.local
