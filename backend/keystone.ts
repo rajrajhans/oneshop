@@ -1,16 +1,16 @@
 import 'dotenv/config';
 import { config, createSchema } from '@keystone-next/keystone/schema';
-import { User } from './schamas/User';
+import { User } from './schemas/User';
 import { createAuth } from '@keystone-next/auth';
 import {
   statelessSessions,
   withItemData,
 } from '@keystone-next/keystone/session';
-import { Product } from './schamas/Product';
-import { ProductImage } from './schamas/ProductImage';
+import { Product } from './schemas/Product';
+import { ProductImage } from './schemas/ProductImage';
 import { insertDemoData } from './demo-data';
 import { extendGraphQlSchema } from './mutations';
-import { CartItem } from './schamas/CartItem';
+import { CartItem } from './schemas/CartItem';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-oneshop';
