@@ -32,7 +32,7 @@ const SingleOrderPage = () => {
       </Head>
       {order && (
         <OrderStyles>
-          <div className="order-header">Order Successfully Placed!</div>
+          <div className="order-header">Order being processed</div>
           <div className="order-container">
             <p>
               <span>Order Id:</span>

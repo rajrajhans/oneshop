@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
 const OrderItemStyles = styled.li`
-  box-shadow: var(--bs);
+  box-shadow: 0 3px 3px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 10px;
   list-style: none;
   padding: 2rem;
-  border: 1px solid var(--offWhite);
+  border: 1px solid var(--accent);
+
+  :hover {
+    cursor: pointer;
+    box-shadow: -2px -1px 17px 1px rgba(255, 128, 40, 0.56);
+  }
+
   h2 {
     border-bottom: 2px solid red;
     margin-top: 0;
