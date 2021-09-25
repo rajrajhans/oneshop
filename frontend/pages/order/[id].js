@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { useLoadingContext } from '../../components/helpers/LoadingContext';
 import ErrorMessage from '../../components/helpers/ErrorMessage';
 import { useRouter } from 'next/router';
-import OrderStyles from './OrderStyles';
+import OrderStyles from '../../components/order/OrderStyles';
 import Head from 'next/head';
 import formatPrice from '../../utils/formatPrice';
 
