@@ -13,6 +13,8 @@ import { extendGraphQlSchema } from './mutations';
 import { CartItem } from './schemas/CartItem';
 import { OrderItem } from './schemas/OrderItem';
 import { Order } from './schemas/Order';
+import Role from './schemas/Role';
+import { permissionsList } from './schemas/fields';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-oneshop';
@@ -58,11 +60,21 @@ export default withAuth(
       CartItem,
       OrderItem,
       Order,
+      Role,
     }),
     extendGraphqlSchema: extendGraphQlSchema,
     ui: {
       isAccessAllowed: ({ session }) => session?.data,
     },
-    session: withItemData(statelessSessions(sessionConfig), { User: `id` }),
+    session: withItemData(statelessSessions(sessionConfig), {
+      User: `
+      id 
+      name 
+      email 
+      role {
+        ${permissionsList.join(' ')}  
+      }
+      `,
+    }),
   }),
 );
