@@ -49,7 +49,7 @@ const Checkout = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [checkout, { error: gqlError }] = useMutation(CREATE_ORDER_MUTATION, {
-    refetchQueries: [{ query: ['CURRENT_USER_QUERY'] }],
+    refetchQueries: ['CURRENT_USER_QUERY'],
   });
   const router = useRouter();
   const { closeCart } = CartStateContext();
@@ -69,6 +69,7 @@ const Checkout = () => {
       type: 'card',
       card: elements.getElement(CardElement),
     });
+
     if (error) {
       setError(error);
       toggleIsLoading(false);
