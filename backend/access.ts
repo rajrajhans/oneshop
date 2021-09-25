@@ -33,6 +33,10 @@ export const rules = {
     //  - he has permission to manage any product (like an admin) OR
     //  - he is the creator of that particular product
 
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+
     if (permissions.canManageProducts(session)) {
       return true;
     }
@@ -43,6 +47,10 @@ export const rules = {
     // a user can read a product if -
     //  - he has permission to manage any product (like an admin) OR
     //  - the product is available
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+
     if (permissions.canManageProducts(session)) {
       return true;
     }
@@ -54,6 +62,10 @@ export const rules = {
     //  - he has permission to manage any product (like an admin) OR
     //  - he is the creator of that particular product
 
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+
     if (permissions.canManageCart(session)) {
       return true;
     }
@@ -64,6 +76,10 @@ export const rules = {
     // a user can manage a product if -
     //  - he has permission to manage any product (like an admin) OR
     //  - he is the creator of that particular product
+
+    if (!isSignedIn({ session })) {
+      return false;
+    }
 
     if (permissions.canManageCart(session)) {
       return true;
