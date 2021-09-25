@@ -4,6 +4,7 @@ export function isSignedIn({ session }) {
   return !!session;
 }
 
+// permissions are to check whether a user meets a certain criteria (returns true or false)
 export const permissions = {
   canManageProducts({ session }) {
     return session?.data.role?.canManageProducts;
@@ -22,5 +23,30 @@ export const permissions = {
   },
   canManageOrders({ session }) {
     return session?.data.role?.canManageOrders;
+  },
+};
+
+// rules can return either a boolean or a filter which limits the products they can operate on
+export const rules = {
+  canManageProduct({ session }) {
+    // a user can manage a product if -
+    //  - he has permission to manage any product (like an admin) OR
+    //  - he is the creator of that particular product
+
+    if (permissions.canManageProducts(session)) {
+      return true;
+    }
+
+    return { user: { id: session.itemId } }; // returns a "where" filter
+  },
+  canReadProducts({ session }) {
+    // a user can read a product if -
+    //  - he has permission to manage any product (like an admin) OR
+    //  - the product is available
+    if (permissions.canManageProducts(session)) {
+      return true;
+    }
+
+    return { status: 'AVAILABLE' };
   },
 };
