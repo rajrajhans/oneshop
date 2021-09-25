@@ -13,6 +13,7 @@ import { extendGraphQlSchema } from './mutations';
 import { CartItem } from './schemas/CartItem';
 import { OrderItem } from './schemas/OrderItem';
 import { Order } from './schemas/Order';
+import Role from './schemas/Role';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-oneshop';
@@ -58,6 +59,7 @@ export default withAuth(
       CartItem,
       OrderItem,
       Order,
+      Role,
     }),
     extendGraphqlSchema: extendGraphQlSchema,
     ui: {
