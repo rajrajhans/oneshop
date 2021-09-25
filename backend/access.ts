@@ -49,4 +49,32 @@ export const rules = {
 
     return { status: 'AVAILABLE' };
   },
+  canOrder({ session }) {
+    // a user can manage a product if -
+    //  - he has permission to manage any product (like an admin) OR
+    //  - he is the creator of that particular product
+
+    if (permissions.canManageCart(session)) {
+      return true;
+    }
+
+    return { user: { id: session.itemId } }; // returns a "where" filter
+  },
+  canManageOrderItems({ session }) {
+    // a user can manage a product if -
+    //  - he has permission to manage any product (like an admin) OR
+    //  - he is the creator of that particular product
+
+    if (permissions.canManageCart(session)) {
+      return true;
+    }
+
+    return {
+      order: {
+        user: {
+          id: session.itemId,
+        },
+      },
+    }; // returns a "where" filter
+  },
 };
