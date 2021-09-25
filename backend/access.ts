@@ -58,10 +58,6 @@ export const rules = {
     return { status: 'AVAILABLE' };
   },
   canOrder({ session }) {
-    // a user can manage a product if -
-    //  - he has permission to manage any product (like an admin) OR
-    //  - he is the creator of that particular product
-
     if (!isSignedIn({ session })) {
       return false;
     }
@@ -73,10 +69,6 @@ export const rules = {
     return { user: { id: session.itemId } }; // returns a "where" filter
   },
   canManageOrderItems({ session }) {
-    // a user can manage a product if -
-    //  - he has permission to manage any product (like an admin) OR
-    //  - he is the creator of that particular product
-
     if (!isSignedIn({ session })) {
       return false;
     }
@@ -92,5 +84,16 @@ export const rules = {
         },
       },
     }; // returns a "where" filter
+  },
+  canManageUsers({ session }) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+
+    if (permissions.canManageUsers(session)) {
+      return true;
+    }
+
+    return { id: session.itemId }; // returns a "where" filter
   },
 };
