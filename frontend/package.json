@@ -10,7 +10,7 @@
     "test": "NODE_ENV=test jest --watch"
   },
   "author": "Raj Rajhans",
-  "repository": "https://github.com/rajrajhans/ecommerce-starter",
+  "repository": "https://github.com/rajrajhans/oneshop",
   "license": "ISC",
   "dependencies": {
     "@apollo/client": "^3.3.8",
