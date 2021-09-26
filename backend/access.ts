@@ -7,22 +7,22 @@ export function isSignedIn({ session }) {
 // permissions are to check whether a user meets a certain criteria (returns true or false)
 export const permissions = {
   canManageProducts({ session }) {
-    return session?.data.role?.canManageProducts;
+    return !!session?.data.role?.canManageProducts;
   },
   canSeeOtherUsers({ session }) {
-    return session?.data.role?.canSeeOtherUsers;
+    return !!session?.data.role?.canSeeOtherUsers;
   },
   canManageUsers({ session }) {
-    return session?.data.role?.canManageUsers;
+    return !!session?.data.role?.canManageUsers;
   },
   canManageRoles({ session }) {
-    return session?.data.role?.canManageRoles;
+    return !!session?.data.role?.canManageRoles;
   },
   canManageCart({ session }) {
-    return session?.data.role?.canManageCart;
+    return !!session?.data.role?.canManageCart;
   },
   canManageOrders({ session }) {
-    return session?.data.role?.canManageOrders;
+    return !!session?.data.role?.canManageOrders;
   },
 };
 
