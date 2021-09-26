@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://examsecure.rajrajhans.com">
+  <a href="https://oneshop.rajrajhans.com">
     <img alt="OneShop" src="docs/logo.png" width="55"/>
   </a>
 </p>
