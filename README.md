@@ -9,10 +9,10 @@
 </h1>
 
 <h4 align="center">
-  Simple ecommerce webapp built using NextJS, Keystone, Apollo, GraphQL 
+  Oneshop is a platform where users can buy and sell products. Built using NextJS, Keystone, Apollo, GraphQL. 
 </h4>
 
-### Tools & Technologies Used 
+## Tools & Technologies Used 
 - **NextJS**
   - Used as a fullstack React framework for server side rendering and static generation, among other things.
   - Used Vercel to deploy the Next app.
@@ -25,3 +25,9 @@
 - **Styled Components**
   - All the styles are done using Styled Components and plain old CSS.
 - **Apollo GraphQL**
+
+## Features
+1. Roles and Permissions for different types of users (admin, editor, viewer)
+2. User Authentication
+3. Creating, updating, deleting products, orders, cart items.
+4. Stripe Integration
