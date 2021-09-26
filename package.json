@@ -1,0 +1,14 @@
+{
+  "name": "@rajrajhans/oneshop",
+  "private": true,
+  "author": "Raj Rajhans",
+  "license": "MIT",
+  "scripts": {
+    "start-frontend": "cd frontend && yarn dev",
+    "start-backend": "cd backend && yarn dev"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": "https://github.com/rajrajhans/oneshop"
+}
