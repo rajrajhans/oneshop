@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import { ProductsPerPage } from '../../config';
 import ErrorMessage from '../../components/helpers/ErrorMessage';
 import Search from '../../components/search/Search';
+import { useUser } from '../../utils/useUser';
 
 const StyledVerticalText = styled.div`
   writing-mode: vertical-lr;
@@ -63,6 +64,8 @@ const ShopTopSection = () => (
 const Shop = () => {
   const { query } = useRouter();
   const page = parseInt(query.page);
+  const router = useRouter();
+  const currentUser = useUser();
 
   const skipValue = page ? (page - 1) * ProductsPerPage : 0;
 
@@ -79,6 +82,10 @@ const Shop = () => {
 
   if (error) {
     return <ErrorMessage error={error} />;
+  }
+
+  if (!currentUser) {
+    router.push('/shop').catch((e) => console.log(e));
   }
 
   return (
