@@ -1,1 +1,1 @@
-web: npm prod-start-backend
+web: npm start-backend-prod
