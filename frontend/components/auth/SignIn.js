@@ -92,7 +92,7 @@ const SignIn = () => {
                   id={'email'}
                   placeholder={'Your Email'}
                   onChange={onChangeHandler}
-                  value={query?.email ? query.email : inputs.email}
+                  value={inputs.email}
                   required={true}
                 />
               </div>
