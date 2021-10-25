@@ -55,7 +55,7 @@ export const rules = {
       return true;
     }
 
-    return { status: 'AVAILABLE' };
+    return true;
   },
   canOrder({ session }) {
     if (!isSignedIn({ session })) {
