@@ -68,8 +68,5 @@
     "prettier": "^2.2.1",
     "typescript": "^4.1.2"
   },
-  "engines": {
-    "node": ">=14.0.0"
-  },
   "repository": "https://github.com/rajrajhans/oneshop"
 }
