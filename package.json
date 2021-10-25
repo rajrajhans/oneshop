@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start-frontend": "cd frontend && yarn dev",
-    "start-backend": "cd backend && yarn dev"
+    "start-backend": "cd backend && yarn dev",
+    "start-backend-prod": "cd backend && yarn prod-start"
   },
   "engines": {
     "node": ">=14.0.0"
