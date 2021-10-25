@@ -11,7 +11,7 @@
     "postinstall": "cd backend && yarn build-deploy"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": "16.11.0"
   },
   "repository": "https://github.com/rajrajhans/oneshop"
 }
