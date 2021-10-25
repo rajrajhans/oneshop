@@ -5,10 +5,13 @@
   "license": "MIT",
   "scripts": {
     "start-frontend": "cd frontend && yarn dev",
-    "start-backend": "cd backend && yarn dev"
+    "start-backend": "cd backend && yarn dev",
+    "start-backend-prod": "cd backend && yarn prod-start",
+    "build": "cd backend && yarn",
+    "postinstall": "cd backend && yarn && yarn build-deploy"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": "16.11.0"
   },
   "repository": "https://github.com/rajrajhans/oneshop"
 }

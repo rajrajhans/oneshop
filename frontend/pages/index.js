@@ -1,7 +1,3 @@
-import React from 'react';
+import Shop from './shop/index';
 
-const Index = () => {
-  return <div>Hello from Index</div>;
-};
-
-export default Index;
+export default Shop;
