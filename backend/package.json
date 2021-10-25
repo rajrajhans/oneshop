@@ -7,7 +7,7 @@
     "dev": "keystone-next",
     "deploy": "keystone-next build",
     "dev-start": "keystone-next",
-    "prod-start": "keystone-next start",
+    "prod-start": "keystone-next build && keystone-next start",
     "postinstall": "keystone-next postinstall",
     "demo-data": "keystone-next --demo-data"
   },
