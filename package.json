@@ -6,7 +6,9 @@
   "scripts": {
     "start-frontend": "cd frontend && yarn dev",
     "start-backend": "cd backend && yarn dev",
-    "start-backend-prod": "cd backend && yarn && yarn prod-start"
+    "start-backend-prod": "cd backend && yarn prod-start",
+    "build": "cd backend && yarn",
+    "postinstall": "cd backend && yarn build-deploy"
   },
   "engines": {
     "node": ">=14.0.0"
