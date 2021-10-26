@@ -1,3 +1,3 @@
-import Shop from './shop/index';
+import SignIn from './sign-in';
 
-export default Shop;
+export default SignIn;

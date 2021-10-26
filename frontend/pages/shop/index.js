@@ -81,9 +81,6 @@ const Shop = () => {
   }
 
   if (error) {
-    if (!currentUser) {
-      router.push('/sign-in').catch((e) => console.log(e));
-    }
     return <ErrorMessage error={error} />;
   }
 
