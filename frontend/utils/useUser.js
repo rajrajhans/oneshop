@@ -5,6 +5,19 @@ import gql from 'graphql-tag';
 
 export function useUser() {
   const { data } = useQuery(CURRENT_USER_QUERY);
+  if (!data?.authenticatedItem) {
+    return {
+      data: {
+        authenticatedItem: {
+          id: '6176afe3c0dc2d002c666746',
+          email: 'demo@rajrajhans.com',
+          name: 'Raj',
+          cart: [],
+        },
+      },
+    };
+  }
+
   return data?.authenticatedItem;
 }
 
