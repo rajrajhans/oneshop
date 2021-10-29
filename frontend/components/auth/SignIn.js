@@ -21,7 +21,10 @@ export const FormDetailsText = styled.div`
 `;
 
 const SignIn = () => {
-  const [inputs, onChangeHandler, resetForm] = useForm();
+  const [inputs, onChangeHandler, resetForm] = useForm({
+    email: 'demo@rajrajhans.com',
+    password: 'password',
+  });
   const [loginError, setLoginError] = useState(null);
   const [signIn, { data, mutationError, loading }] = useMutation(
     SIGNIN_MUTATION,
