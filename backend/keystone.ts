@@ -64,7 +64,7 @@ export default withAuth(
     }),
     extendGraphqlSchema: extendGraphQlSchema,
     ui: {
-      isAccessAllowed: ({ session }) => session?.data,
+      isAccessAllowed: ({ session }) => true,
     },
     session: withItemData(statelessSessions(sessionConfig), {
       User: `
