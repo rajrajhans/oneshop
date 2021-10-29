@@ -10,4 +10,13 @@ module.exports = {
 
     return config;
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api',
+        destination:
+          'https://mysterious-garden-13821.herokuapp.com/api/graphql',
+      },
+    ];
+  },
 };
