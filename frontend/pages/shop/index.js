@@ -64,8 +64,6 @@ const ShopTopSection = () => (
 const Shop = () => {
   const { query } = useRouter();
   const page = parseInt(query.page);
-  const router = useRouter();
-  const currentUser = useUser();
 
   const skipValue = page ? (page - 1) * ProductsPerPage : 0;
 
@@ -82,10 +80,6 @@ const Shop = () => {
 
   if (error) {
     return <ErrorMessage error={error} />;
-  }
-
-  if (!currentUser) {
-    router.push('/sign-in').catch((e) => console.log(e));
   }
 
   return (
