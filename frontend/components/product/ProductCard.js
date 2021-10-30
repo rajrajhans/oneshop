@@ -173,7 +173,7 @@ const ProductCard = ({ product }) => {
       </ProductDetailsWrapper>
 
       <ButtonsBar>
-        <Link href={{ pathname: 'update', query: { id: product.id } }}>
+        <Link href={{ pathname: '/update', query: { id: product.id } }}>
           <ProductButton left={true}>
             <div className="tooltip">Edit Product</div>
             <EditIcon />

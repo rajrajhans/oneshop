@@ -36,9 +36,13 @@ const UpdateProduct = () => {
         description: inputs.description,
         price: inputs.price,
       },
-    }).catch((e) => {
-      console.log(e);
-    });
+    })
+      .then(() => {
+        router.push('/shop').catch((e) => console.log(e));
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   useEffect(() => {
