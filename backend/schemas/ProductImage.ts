@@ -15,8 +15,10 @@ export const ProductImage = list({
   access: {
     create: isSignedIn,
     read: () => true,
-    update: rules.canManageProduct,
-    delete: rules.canManageProduct,
+    // update: rules.canManageProduct,
+    // delete: rules.canManageProduct,
+    update: () => true,
+    delete: () => true,
   },
   fields: {
     image: cloudinaryImage({ cloudinary, label: 'Source' }),

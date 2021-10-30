@@ -26,7 +26,7 @@ const OrderItemStyles = styled.li`
     margin-top: 1rem;
     img {
       height: 200px;
-      object-fit: cover;
+      object-fit: contain;
       width: 100%;
     }
   }

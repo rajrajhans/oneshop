@@ -5,9 +5,11 @@ import { isSignedIn, rules } from '../access';
 export const Product = list({
   access: {
     create: isSignedIn,
-    read: true,
-    update: rules.canManageProduct,
-    delete: rules.canManageProduct,
+    read: () => true,
+    // update: rules.canManageProduct,
+    // delete: rules.canManageProduct,
+    update: () => true,
+    delete: () => true,
   },
   fields: {
     name: text({ isRequired: true }),

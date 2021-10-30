@@ -43,8 +43,8 @@ const navItemsForAuthenticatedUsers = [
     id: 3,
   },
   {
-    name: 'Account',
-    route: '/account',
+    name: 'Orders',
+    route: '/orders',
     id: 4,
   },
 ];
